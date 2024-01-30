@@ -1,6 +1,8 @@
 configstore
+node_modules
 github-copilot
 iterm2
+yarn.lock
 jgit
 simple-update-notifier
 .DS_Store
