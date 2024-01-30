@@ -84,4 +84,7 @@ serverManager:add("jsonls", {
 -- EMMET
 serverManager:add("emmet_ls", {})
 
+-- MARKDOWN
+serverManager:add("marksman", {})
+
 return serverManager
