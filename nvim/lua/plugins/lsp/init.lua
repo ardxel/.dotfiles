@@ -1,4 +1,5 @@
 local config = function()
+	local neodev = require("neodev")
 	local lspconfig = require("lspconfig")
 	local servers = require("plugins.lsp.utils.servers")
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -7,6 +8,8 @@ local config = function()
 	local handlers = require("plugins.lsp.utils.handlers")
 
 	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+	neodev.setup()
 
 	servers:setup(lspconfig, {
 		on_attach = attach,

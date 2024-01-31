@@ -56,9 +56,11 @@ serverManager:add("html", {})
 
 -- LUA
 serverManager:add("lua_ls", {
-	diagnostics = {
+	settings = {
 		Lua = {
-			globals = { "vim" },
+			workspace = {
+				checkThirdParty = false,
+			},
 		},
 	},
 })

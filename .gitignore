@@ -7,3 +7,4 @@ jgit
 simple-update-notifier
 .DS_Store
 .bash
+tmux/plugins/
