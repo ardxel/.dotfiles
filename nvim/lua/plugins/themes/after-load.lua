@@ -22,14 +22,16 @@ return function(theme_name)
 		vim.cmd("hi! YellowItalic gui=NONE cterm=NONE ctermfg=214 guifg=#d8a657")
 	end
 
-	-- vim.cmd("hi! SignColumn guibg=NONE ctermbg=NONE")
-	-- vim.cmd("hi! NvimTreeNormal guibg=NONE ctermbg=NONE")
-	-- vim.cmd("hi! Normal guibg=NONE  ctermbg=NONE")
-	-- vim.cmd("hi! NonText guibg=NONE guifg=NONE ctermbg=NONE")
-	-- vim.cmd("hi! Pmenu guibg=NONE ctermbg=NONE")
-	-- vim.cmd("hi! NormalFloat guibg=NONE ctermbg=NONE")
-	-- vim.cmd("hi! Float guibg=NONE ctermbg=NONE")
-	-- vim.cmd("hi! NormalFloatBorder ctermbg=NONE guibg=NONE")
-	-- vim.cmd("hi! LspFloatWinBorder ctermbg=NONE guibg=NONE")
-	-- vim.cmd("hi! TelescopeBorder ctermbg=NONE guibg=NONE")
+	if theme_name ~= "tokyo_night" then
+		vim.cmd("hi! SignColumn guibg=NONE ctermbg=NONE")
+		vim.cmd("hi! NvimTreeNormal guibg=NONE ctermbg=NONE")
+		vim.cmd("hi! Normal guibg=NONE  ctermbg=NONE")
+		vim.cmd("hi! NonText guibg=NONE guifg=NONE ctermbg=NONE")
+		vim.cmd("hi! Pmenu guibg=NONE ctermbg=NONE")
+		vim.cmd("hi! NormalFloat guibg=NONE ctermbg=NONE")
+		vim.cmd("hi! Float guibg=NONE ctermbg=NONE")
+		vim.cmd("hi! NormalFloatBorder ctermbg=NONE guibg=NONE")
+		vim.cmd("hi! LspFloatWinBorder ctermbg=NONE guibg=NONE")
+		vim.cmd("hi! TelescopeBorder ctermbg=NONE guibg=NONE")
+	end
 end
