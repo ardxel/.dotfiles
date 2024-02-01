@@ -1,5 +1,6 @@
 return {
 	"mfussenegger/nvim-lint",
+	lazy = true,
 	config = function()
 		local lint = require("lint")
 
@@ -12,6 +13,8 @@ return {
 			markdown = { "markdownlint" },
 			json = { "jsonlint" },
 			jsonc = { "jsonlint" },
+			sh = { "shellcheck" },
+			zsh = { "shellcheck" },
 		}
 
 		local M = {}

@@ -1,8 +1,9 @@
 return {
 	"stevearc/conform.nvim",
-	lazy = false,
+	lazy = true,
+	dependecies = { "mason.nvim" },
 	event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out:w
-
+	cmd = "ConformInfo",
 	config = function()
 		local conform = require("conform")
 
@@ -22,6 +23,7 @@ return {
 				css = { "prettierd" },
 				scss = { "prettierd" },
 				sh = { "shfmt" },
+				zsh = { "shfmt" },
 				json = { "prettierd" },
 				jsonc = { "prettierd" },
 				docker = { "prettierd" },

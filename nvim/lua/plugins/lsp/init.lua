@@ -34,7 +34,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = config,
-		lazy = false,
 		opts = {
 			-- options for vim.diagnostic.config()
 			diagnostics = {
@@ -68,18 +67,17 @@ return {
 			local tools = require("typescript-tools")
 			local attach = require("plugins.lsp.utils.attach")
 			local handlers = require("plugins.lsp.utils.handlers")
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+			-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 			tools.setup({
 				settings = {
-					separate_diagnostic_server = false,
+					-- separate_diagnostic_server = false,
+					separate_diagnostic_server = true,
 				},
-				capabilities = capabilities,
+				-- capabilities = capabilities,
 				on_attach = attach,
 				handlers = handlers,
-				tsserver_locale = "en",
 			})
 		end,
 	},

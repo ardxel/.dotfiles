@@ -67,7 +67,7 @@ serverManager:add("lua_ls", {
 
 -- BASH
 serverManager:add("bashls", {
-	filetypes = { "sh", "aliasrc" },
+	filetypes = { "sh", "aliasrc", "zsh" },
 })
 
 -- DOCKER

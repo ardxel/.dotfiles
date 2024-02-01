@@ -5,7 +5,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
-		local theme = require("lualine.themes.gruvbox_light")
+		local theme = require("lualine.themes.papercolor_light")
 
 		require("lualine").setup({
 			options = {

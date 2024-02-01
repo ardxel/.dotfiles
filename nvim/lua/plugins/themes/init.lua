@@ -6,6 +6,7 @@ local load_theme = function(name)
 		gruvbox_base = { theme = require("plugins.themes.gruvbox-base"), cmd_name = "gruvbox-base" },
 		gruvbox_material = { theme = require("plugins.themes.gruvbox-material"), cmd_name = "gruvbox-material" },
 		kanagawa = { theme = require("plugins.themes.kanagawa"), cmd_name = "kanagawa" },
+		tokyo_night = { theme = require("plugins.themes.tokyo-night"), cmd_name = "tokyo-night" },
 	}
 
 	if themes[name] == nil then
@@ -19,4 +20,4 @@ local load_theme = function(name)
 	return themes[name].theme
 end
 
-return load_theme("gruvbox_material")
+return load_theme("tokyo_night")
