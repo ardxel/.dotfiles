@@ -16,10 +16,10 @@ return {
 				floats = "transparent",
 				-- Style to be applied to different syntax groups
 				-- Value is any valid attr-list value for `:help nvim_set_hl`
-				comments = { italic = true },
-				keywords = { bold = true },
+				comments = { italic = true, bold = false },
+				keywords = { bold = true, italic = false },
 				functions = {},
-				variables = { bold = false },
+				variables = { bold = false, italic = false },
 				-- Background styles. Can be "dark", "transparent" or "normal"
 			},
 			sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`

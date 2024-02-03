@@ -20,4 +20,4 @@ local load_theme = function(name)
 	return themes[name].theme
 end
 
-return load_theme("tokyo_night")
+return load_theme("kanagawa")

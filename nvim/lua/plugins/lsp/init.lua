@@ -67,8 +67,6 @@ return {
 			local tools = require("typescript-tools")
 			local attach = require("plugins.lsp.utils.attach")
 			local handlers = require("plugins.lsp.utils.handlers")
-			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
-			-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 			tools.setup({
 				settings = {
@@ -98,6 +96,9 @@ return {
 				},
 				ui = {
 					code_action = "",
+				},
+				symbol_in_winbar = {
+					enable = false,
 				},
 			})
 			vim.cmd([[

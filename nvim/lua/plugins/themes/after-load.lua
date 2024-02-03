@@ -33,5 +33,6 @@ return function(theme_name)
 		vim.cmd("hi! NormalFloatBorder ctermbg=NONE guibg=NONE")
 		vim.cmd("hi! LspFloatWinBorder ctermbg=NONE guibg=NONE")
 		vim.cmd("hi! TelescopeBorder ctermbg=NONE guibg=NONE")
+		-- vim.cmd("hi! BufferLineFill ctermbg=NONE guibg=NONE")
 	end
 end

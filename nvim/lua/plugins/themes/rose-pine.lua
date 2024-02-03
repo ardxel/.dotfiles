@@ -45,8 +45,7 @@ local highlight_groups = {
 
 return {
 	"rose-pine/neovim",
-	enabled = false,
-	lase = false,
+	lazy = false,
 	name = "rose-pine",
 	config = function()
 		require("rose-pine").setup({

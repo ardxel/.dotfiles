@@ -4,6 +4,7 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			local kind_icons = require("config.icons.kinds")
 
 			cmp.setup({
 				completion = {
@@ -15,8 +16,8 @@ return {
 					end,
 				},
 				performance = {
-					debounce = 150,
-					max_view_entries = 15,
+					-- debounce = 25,
+					max_view_entries = 25,
 				},
 				window = {
 					documentation = {
@@ -39,8 +40,22 @@ return {
 					["<C-l>"] = cmp.mapping.complete(),
 				}),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
+					-- { name = "nvim_lsp" },
+					{
+						name = "nvim_lsp",
+						entry_filter = function(entry)
+							-- ignore emmet
+							if
+								entry:get_kind() == require("cmp.types").lsp.CompletionItemKind.Snippet
+								and entry.source:get_debug_name() == "nvim_lsp:emmet_ls"
+							then
+								return false
+							end
+							return true
+						end,
+					},
+					{ name = "luasnip", keyword_length = 2 },
+					-- { name = "luasnip" },
 					-- { name = "cmp_luasnip" },
 				}, {
 					{ name = "buffer" },
@@ -50,7 +65,6 @@ return {
 					fields = { "abbr", "menu", "kind" },
 					format = function(entity, item)
 						local format_text = require("plugins.cmp.format")
-						local kind_icons = require("config.icons.kinds")
 
 						item.menu = format_text[entity.source.name]
 
@@ -61,15 +75,15 @@ return {
 						return item
 					end,
 				},
-			})
-
-			-- Set configuration for specific filetype.
-			cmp.setup.filetype("gitcommit", {
-				sources = cmp.config.sources({
-					{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-				}, {
-					{ name = "buffer" },
-				}),
+				sorting = {
+					comparators = {
+						cmp.config.compare.offset,
+						cmp.config.compare.exact,
+						cmp.config.compare.score,
+						cmp.config.compare.recently_used,
+						cmp.config.compare.kind,
+					},
+				},
 			})
 		end,
 		dependencies = {

@@ -61,18 +61,18 @@ return {
 			case_insensitive_regex = false,
 		})
 
-		vim.cmd("hi! Illuminate guibg=#D3D3D3 ctermbg=220")
+		vim.cmd("hi! Illuminate guibg=#2E6EB2 ctermbg=250")
 
-		vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "BufferLineGroupLabel" })
-		vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "BufferLineGroupLabel" })
-		vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "BufferLineGroupLabel" })
+		vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Illuminate" })
+		vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Illuminate" })
+		vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Illuminate" })
 
 		vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 			pattern = { "*" },
 			callback = function(ev)
-				vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "BufferLineGroupLabel" })
-				vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "BufferLineGroupLabel" })
-				vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "BufferLineGroupLabel" })
+				vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Illuminate" })
+				vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Illuminate" })
+				vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Illuminate" })
 			end,
 		})
 	end,

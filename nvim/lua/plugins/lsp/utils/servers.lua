@@ -16,16 +16,16 @@ function LspServerManager:new()
 			return false
 		end
 
-		private.servers[name] = vim.tbl_extend("force", {}, extra)
+		private.servers[name] = extra
 		return true
 	end
 
 	--- setup all lsp servers
 	---@param lsp table lsp configuration
 	---@param opts table options
-	function public:setup(lsp, opts)
-		for lsp_name, extra in pairs(private.servers) do
-			local options = vim.tbl_extend("force", extra, opts)
+	function public:setup(lsp, extra)
+		for lsp_name, opts in pairs(private.servers) do
+			local options = vim.tbl_extend("force", opts, extra)
 			lsp[lsp_name].setup(options)
 		end
 	end

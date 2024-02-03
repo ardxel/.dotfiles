@@ -55,8 +55,14 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		lazy = true,
-		enabled = true,
-		opts = { mode = "cursor", max_lines = 3 },
+
+		opts = {
+			mode = "cursor",
+			max_lines = 1,
+			enable = true,
+		},
+		config = function(_, opts)
+			require("treesitter-context").setup(opts)
+		end,
 	},
 }

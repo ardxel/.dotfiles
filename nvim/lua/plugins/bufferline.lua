@@ -6,10 +6,10 @@ return {
 		config = function()
 			require("bufferline").setup({
 				options = {
-					always_show_bufferline = true,
 					show_buffer_close_icons = false,
 					diagnostics = "nvim_lsp",
 					show_close_icons = false,
+					always_show_bufferline = true,
 					offsets = {
 						{
 							separator = true,
