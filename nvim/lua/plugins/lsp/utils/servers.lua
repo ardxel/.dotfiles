@@ -3,6 +3,10 @@ local LspServerManager = {}
 function LspServerManager:new()
 	local private = {}
 	private.servers = {}
+	-- TODO
+	private.ignore_servers = {
+		-- "tailwindcss",
+	}
 
 	local public = {}
 	setmetatable(public, self)
@@ -22,11 +26,13 @@ function LspServerManager:new()
 
 	--- setup all lsp servers
 	---@param lsp table lsp configuration
-	---@param opts table options
+	---@param extra table options
 	function public:setup(lsp, extra)
 		for lsp_name, opts in pairs(private.servers) do
-			local options = vim.tbl_extend("force", opts, extra)
-			lsp[lsp_name].setup(options)
+			if vim.tbl_contains(private.ignore_servers, lsp_name) == false then
+				local options = vim.tbl_extend("force", opts, extra)
+				lsp[lsp_name].setup(options)
+			end
 		end
 	end
 

@@ -20,7 +20,7 @@ map.set("n", "<C-S-A>", "gg<S-v>G")
 
 -- BUFFERLINE MANAGMENT
 map.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>")
-map.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>")
+map.set("n", "<C-Tab>", "<cmd>BufferLineCyclePrev<CR>")
 
 map.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 map.set("x", "y", '"+y')
@@ -38,3 +38,14 @@ map.set("n", "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>")
 
 -- Zen mode
 map.set("n", "<leader>tzm", "<cmd>ZenMode<cr>", opts)
+
+-- IF NEOVIDE
+if vim.g.neovide then
+	-- Allow clipboard copy paste in neovim
+	vim.g.neovide_input_use_logo = 1
+
+	vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", opts)
+	vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", opts)
+	vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", opts)
+	vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", opts)
+end

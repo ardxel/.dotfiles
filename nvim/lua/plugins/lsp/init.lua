@@ -1,20 +1,14 @@
 local config = function()
-	local neodev = require("neodev")
-	local lspconfig = require("lspconfig")
 	local servers = require("plugins.lsp.utils.servers")
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-	local attach = require("plugins.lsp.utils.attach")
-	local handlers = require("plugins.lsp.utils.handlers")
+	require("neoconf").setup()
+	require("neodev").setup()
 
-	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-	neodev.setup()
-
-	servers:setup(lspconfig, {
-		on_attach = attach,
-		capabilities = capabilities,
-		handlers = handlers,
+	servers:setup(require("lspconfig"), {
+		on_attach = require("plugins.lsp.utils.attach"),
+		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		handlers = require("plugins.lsp.utils.handlers"),
+		flags = { debounce_text_changes = 100 },
 	})
 
 	local signs = {
@@ -85,6 +79,7 @@ return {
 				-- keybinds for navigation in lspsaga window
 				move_in_saga = { prev = "<C-k>", next = "<C-j>" },
 				code_action = {
+					enable = false,
 					keys = {
 						quit = "<ESC>",
 					},

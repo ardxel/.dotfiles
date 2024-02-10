@@ -12,7 +12,7 @@ return {
 
 		require("lualine").setup({
 			options = {
-				theme = "nightfly",
+				theme = "gruvbox_light",
 				globalstatus = true,
 			},
 			sections = {

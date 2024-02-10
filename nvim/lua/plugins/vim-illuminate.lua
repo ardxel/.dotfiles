@@ -61,7 +61,7 @@ return {
 			case_insensitive_regex = false,
 		})
 
-		vim.cmd("hi! Illuminate guibg=#2E6EB2 ctermbg=250")
+		vim.cmd("hi! Illuminate guibg=#504945 ctermbg=240")
 
 		vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Illuminate" })
 		vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Illuminate" })

@@ -21,6 +21,9 @@ return {
 					},
 				},
 			})
+			-- vim.cmd("hi! BufferLineFill ctermbg=NONE guibg=NONE")
+			-- vim.cmd("hi! BufferLineBuffer ctermbg=NONE guibg=NONE")
+			-- vim.cmd("hi! BufferLineTab ctermbg=NONE guibg=NONE gui=bold cterm=bold")
 		end,
 	},
 	{

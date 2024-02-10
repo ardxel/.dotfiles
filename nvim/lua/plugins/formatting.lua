@@ -13,6 +13,7 @@ return {
 				async = false, -- not recommended to change
 				quiet = false, -- not recommended to change
 			},
+			-- stylua, prettierd, shfmt
 			formatters_by_ft = {
 				lua = { "stylua" },
 				typescript = { "prettierd" },
