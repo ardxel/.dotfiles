@@ -2,7 +2,6 @@ return {
 	{
 		"echasnovski/mini.nvim",
 		version = "*",
-		lazy = false,
 		config = function()
 			require("mini.move").setup({})
 		end,
@@ -25,9 +24,8 @@ return {
 	},
 	{
 		"echasnovski/mini.comment",
-		lazy = false,
-		version = "*",
 		event = "VeryLazy",
+		version = "*",
 		opts = {
 			options = {
 				custom_commentstring = function()

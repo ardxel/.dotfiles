@@ -46,7 +46,10 @@ return {
 			},
 		},
 		dependencies = {
-			"williamboman/mason.nvim",
+			{
+				"williamboman/mason.nvim",
+				build = ":MasonUpdate",
+			},
 			"williamboman/mason-lspconfig.nvim",
 			"windwp/nvim-autopairs",
 		},

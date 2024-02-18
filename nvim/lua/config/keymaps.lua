@@ -2,8 +2,10 @@ local map = vim.keymap
 local opts = { noremap = true, silent = true }
 
 -- DIRECTORY NAVIGATION
-map.set("n", "<leader>m", ":NvimTreeFocus<CR>", opts)
-map.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+-- map.set("n", "<leader>m", ":NvimTreeFocus<CR>", opts)
+-- map.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+map.set("n", "<leader>e", ":Neotree toggle<CR>", opts)
+map.set("n", "<leader>m", ":Neotree focus<CR>", opts)
 
 -- PANEL NAVIGATION
 map.set("n", "<C-h>", "<C-w>h", opts)
@@ -11,16 +13,22 @@ map.set("n", "<C-j>", "<C-w>j", opts)
 map.set("n", "<C-k>", "<C-w>k", opts)
 map.set("n", "<C-l>", "<C-w>l", opts)
 
+-- RESIZE WINDOW
+map.set("n", "<C-w><left>", "<C-w><")
+map.set("n", "<C-w><right>", "<C-w>>")
+map.set("n", "<C-w><up>", "<C-w>+")
+map.set("n", "<C-w><down>", "<C-w>-")
+
 -- WINDOW MANAGEMENT
 map.set("n", "<leader>sh", ":vsplit<CR>", opts) -- split vertical
 map.set("n", "<leader>sv", ":split<CR>", opts) -- split horizontal
 
 -- SELECT ALL
-map.set("n", "<C-S-A>", "gg<S-v>G")
+map.set("n", "<C-s-a>", "gg<S-v>G")
 
 -- BUFFERLINE MANAGMENT
-map.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>")
-map.set("n", "<C-Tab>", "<cmd>BufferLineCyclePrev<CR>")
+map.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts)
+map.set("n", "<s-Tab>", "<cmd>BufferLineCyclePrev<CR>", opts)
 
 map.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 map.set("x", "y", '"+y')

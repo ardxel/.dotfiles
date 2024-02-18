@@ -35,6 +35,9 @@ return {
 				async = false,
 				timeout_ms = 1000,
 			},
+			formatters = {
+				injected = { options = { ignore_errors = true } },
+			},
 		})
 	end,
 }

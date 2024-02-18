@@ -1,4 +1,5 @@
 return {
-	require("plugins.nav.nvim-tree"),
 	require("plugins.nav.telescrope"),
+	require("plugins.nav.bufferline"),
+	require("plugins.nav.neo-tree"),
 }

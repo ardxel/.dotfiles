@@ -1,31 +1,53 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	lazy = false,
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
 	keys = {
-		vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<CR>"),
-		vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>"),
-		vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>"),
-		vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>"),
+		{
+			"<leader>ff",
+			function()
+				local builtin = require("telescope.builtin")
+				builtin.find_files({
+					no_ignore = false,
+					hidden = true,
+				})
+			end,
+			desc = "find files in your current working directory, respect .gitignore",
+		},
+		{
+			"<leader>fF",
+			function()
+				local builtin = require("telescope.builtin")
+				builtin.find_files({
+					no_ignore = true,
+					hidden = false,
+				})
+			end,
+			desc = "find files in your current working directory, no respect .gitignore",
+		},
+		{
+			"<leader>fg",
+			function()
+				local builtin = require("telescope.builtin")
+				builtin.live_grep({
+					additional_args = { "--hidden" },
+				})
+			end,
+			desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+		},
+		{
+			"<leader>fb",
+			function()
+				local builtin = require("telescope.builtin")
+				builtin.buffers()
+			end,
+			desc = "show buffers",
+		},
 	},
 	config = function()
 		require("telescope").setup({
-			pickers = {
-				find_files = {
-					hidden = true,
-					file_ignore_patterns = { "node_modules", ".git" },
-				},
-				live_grep = {
-					hidden = true,
-					file_ignore_patterns = {
-						"node_modules",
-						".git",
-						"lazy%-lock.json",
-						"yarn.lock",
-						"package%-lock.json",
-					},
-				},
-			},
 			defaults = {
 				path_display = { "truncate" },
 				sorting_strategy = "ascending",

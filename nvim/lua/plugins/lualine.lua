@@ -1,6 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	lazy = false,
+	-- event = "VeryLazy",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
@@ -12,7 +12,8 @@ return {
 
 		require("lualine").setup({
 			options = {
-				theme = "gruvbox_light",
+				-- theme = "gruvbox_light",
+				theme = "rose-pine",
 				globalstatus = true,
 			},
 			sections = {

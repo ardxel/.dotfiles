@@ -10,6 +10,8 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
+vim.cmd("language en_US")
+vim.g.mapleader = " "
 
 require("config.globals")
 require("config.keymaps")
@@ -24,6 +26,7 @@ local options = {
 			"gzip",
 			"matchit",
 			"netrwPlugin",
+			"netrw",
 			"tarPlugin",
 			"tohtml",
 		},
@@ -31,6 +34,19 @@ local options = {
 	ui = {
 		border = "rounded",
 	},
+	change_detection = { notify = false },
 }
 
 require("lazy").setup(plugins, options)
+
+vim.api.nvim_create_augroup("neotree", {})
+vim.api.nvim_create_autocmd("UiEnter", {
+	desc = "Open Neotree automatically",
+	group = "neotree",
+	callback = function()
+		print(vim.fn.argc())
+		if vim.fn.argc() == 0 then
+			vim.cmd("Neotree toggle")
+		end
+	end,
+})

@@ -13,4 +13,4 @@ local load_theme = function(name)
 	return themes[name].theme
 end
 
-return load_theme("gruvbox_base")
+return load_theme("rose_pine")

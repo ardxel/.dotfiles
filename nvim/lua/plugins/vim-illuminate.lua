@@ -1,6 +1,5 @@
 return {
 	"RRethy/vim-illuminate",
-	enabled = true,
 	lazy = false,
 	config = function()
 		-- default configuration

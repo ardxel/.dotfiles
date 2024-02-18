@@ -1,6 +1,6 @@
 return {
 	"mfussenegger/nvim-lint",
-	lazy = true,
+	lazy = false,
 	config = function()
 		local lint = require("lint")
 		-- eslint_d, luacheck, markdownlint, jsonlint, shellcheck

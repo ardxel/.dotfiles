@@ -1,6 +1,7 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
@@ -30,8 +31,10 @@ return {
 					},
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-j>"] = cmp.mapping.scroll_docs(-4),
-					["<C-k>"] = cmp.mapping.scroll_docs(4),
+					["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+					["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+					["<C-k>"] = cmp.mapping.select_prev_item(),
+					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<Enter>"] = cmp.mapping.confirm({
 						select = true,
 						behavior = cmp.ConfirmBehavior.Replace,
@@ -40,7 +43,6 @@ return {
 					["<C-l>"] = cmp.mapping.complete(),
 				}),
 				sources = cmp.config.sources({
-					-- { name = "nvim_lsp" },
 					{
 						name = "nvim_lsp",
 						entry_filter = function(entry)
@@ -55,8 +57,6 @@ return {
 						end,
 					},
 					{ name = "luasnip", keyword_length = 2 },
-					-- { name = "luasnip" },
-					-- { name = "cmp_luasnip" },
 				}, {
 					{ name = "buffer" },
 					{ name = "path" },
@@ -85,12 +85,30 @@ return {
 					},
 				},
 			})
+
+			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+			cmp.setup.cmdline({ "/", "?" }, {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = "buffer" },
+				},
+			})
+
+			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+			-- cmp.setup.cmdline(":", {
+			-- 	mapping = cmp.mapping.preset.cmdline(),
+			-- 	sources = cmp.config.sources({
+			-- 		{ name = "path" },
+			-- 	}, {
+			-- 		{ name = "cmdline" },
+			-- 	}),
+			-- })
 		end,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			-- "saadparwaiz1/cmp_luasnip",
 			"roobert/tailwindcss-colorizer-cmp.nvim",
 		},
 	},

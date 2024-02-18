@@ -5,7 +5,8 @@ function LspServerManager:new()
 	private.servers = {}
 	-- TODO
 	private.ignore_servers = {
-		-- "tailwindcss",
+		"tailwindcss",
+		"emmet_ls",
 	}
 
 	local public = {}
