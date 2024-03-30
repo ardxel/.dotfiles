@@ -5,7 +5,7 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-			local kind_icons = require("config.icons.kinds")
+			-- local kind_icons = require("config.icons.kinds")
 
 			cmp.setup({
 				completion = {
@@ -61,20 +61,27 @@ return {
 					{ name = "buffer" },
 					{ name = "path" },
 				}),
+				---@diagnostic disable-next-line: missing-fields
 				formatting = {
 					fields = { "abbr", "menu", "kind" },
-					format = function(entity, item)
-						local format_text = require("plugins.cmp.format")
-
-						item.menu = format_text[entity.source.name]
-
-						if kind_icons[item.kind] then
-							item.kind = kind_icons[item.kind] .. "  " .. item.kind
-						end
-
-						return item
-					end,
+					-- format = function(entity, item)
+					-- 	local format_text = require("plugins.cmp.format")
+					--
+					-- 	item.menu = format_text[entity.source.name]
+					--
+					-- 	if kind_icons[item.kind] then
+					-- 		item.kind = kind_icons[item.kind] .. "  " .. item.kind
+					-- 	end
+					--
+					-- 	return item
+					-- end,
+					format = require("lspkind").cmp_format({
+						mode = "symbol_text",
+						menu = require("plugins.cmp.format"),
+						before = require("tailwind-tools.cmp").lspkind_format,
+					}),
 				},
+				---@diagnostic disable-next-line: missing-fields
 				sorting = {
 					comparators = {
 						cmp.config.compare.offset,
@@ -109,7 +116,8 @@ return {
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"roobert/tailwindcss-colorizer-cmp.nvim",
+			-- "roobert/tailwindcss-colorizer-cmp.nvim",
+			"onsails/lspkind.nvim",
 		},
 	},
 	{

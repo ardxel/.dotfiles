@@ -32,17 +32,9 @@ return {
 					{ source = "filesystem", display_name = folder_icons.FolderClosed .. " " .. "File" },
 					{ source = "buffers", display_name = folder_icons.DefaultFile .. " " .. "Bufs" },
 					{ source = "git_status", display_name = git_icons.Git .. " " .. "Git" },
-					{ source = "diagnostics", display_name = folder_icons.Diagnostic .. " " .. "Diagnostic" },
 				},
 			},
-			sort_function = nil, -- use a custom function for sorting files and directories in the tree
-			-- sort_function = function (a,b)
-			--       if a.type == b.type then
-			--           return a.path > b.path
-			--       else
-			--           return a.type > b.type
-			--       end
-			--   end , -- this sorts files and directories descendantly
+			sort_function = nil,
 			default_component_configs = {
 				container = {
 					enable_character_fade = true,
@@ -106,7 +98,7 @@ return {
 			commands = {},
 			window = {
 				position = "left",
-				width = 40,
+				width = 30,
 				mapping_options = {
 					noremap = true,
 					nowait = true,
@@ -121,26 +113,9 @@ return {
 			filesystem = {
 				filtered_items = {
 					visible = false, -- when true, they will just be displayed differently than normal items
-					hide_dotfiles = true,
+					hide_dotfiles = false,
 					hide_gitignored = true,
 					hide_hidden = true, -- only works on Windows for hidden files/directories
-					hide_by_name = {
-						--"node_modules"
-					},
-					hide_by_pattern = { -- uses glob style patterns
-						--"*.meta",
-						--"*/src/*/tsconfig.json",
-					},
-					always_show = { -- remains visible even if other settings would normally hide it
-						--".gitignored",
-					},
-					never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-						--".DS_Store",
-						--"thumbs.db"
-					},
-					never_show_by_pattern = { -- uses glob style patterns
-						--".null-ls_*",
-					},
 				},
 				follow_current_file = {
 					enabled = false, -- This will find and focus the file in the active buffer every time

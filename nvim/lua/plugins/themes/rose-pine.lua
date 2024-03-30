@@ -19,11 +19,11 @@ local highlight_groups = {
 
 	["@keyword"] = { fg = "pine", bold = true },
 	["@keyword.debug"] = { fg = "rose", bold = true },
-	["@keyword.return"] = { fg = "pine", bold = true },
+	["@keyword.return"] = { fg = "love", bold = true },
 	["@keyword.import"] = { fg = "pine", bold = true },
 	["@keyword.repeat"] = { fg = "pine", bold = true },
-	["@keyword.function"] = { fg = "pine", bold = true },
-	["@keyword.operator"] = { fg = "muted", bold = true },
+	["@keyword.function"] = { fg = "love", bold = true },
+	["@keyword.operator"] = { fg = "love", bold = true },
 	["@keyword.exception"] = { fg = "pine", bold = true },
 	["@keyword.conditional"] = { fg = "pine", bold = true },
 
@@ -54,8 +54,8 @@ return {
 		})
 
 		vim.cmd("colorscheme rose-pine")
-		-- vim.cmd("colorscheme rose-pine-main")
-		vim.cmd("colorscheme rose-pine-moon")
+		vim.cmd("colorscheme rose-pine-main")
+		-- vim.cmd("colorscheme rose-pine-moon")
 		-- vim.cmd("colorscheme rose-pine-dawn")
 
 		require("plugins.themes.after-load")()

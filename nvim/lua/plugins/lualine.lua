@@ -10,6 +10,14 @@ return {
 		symbols.dos = ""
 		symbols.mac = ""
 
+		local function my_location()
+			local line = vim.fn.line(".")
+			local col = vim.fn.virtcol(".")
+			local total_lines = vim.fn.line("$")
+
+			return string.format("%2d:%s::%-2d", line, col, total_lines)
+		end
+
 		require("lualine").setup({
 			options = {
 				-- theme = "gruvbox_light",
@@ -28,8 +36,8 @@ return {
 					},
 					"filetype",
 				},
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_y = {},
+				lualine_z = { { my_location } },
 			},
 		})
 	end,

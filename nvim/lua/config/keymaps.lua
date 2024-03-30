@@ -30,9 +30,21 @@ map.set("n", "<C-s-a>", "gg<S-v>G")
 map.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts)
 map.set("n", "<s-Tab>", "<cmd>BufferLineCyclePrev<CR>", opts)
 
-map.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
-map.set("x", "y", '"+y')
-map.set("n", "y", '"+y')
+-- map.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
+-- map.set("x", "y", '"+y')
+-- map.set("n", "y", '"+y')
+
+-- Yank into system clipboard
+map.set({ "n", "v" }, "<leader>y", '"+y') -- yank motion
+map.set({ "n", "v" }, "<leader>Y", '"+Y') -- yank line
+
+-- Delete into system clipboard
+map.set({ "n", "v" }, "<leader>d", '"+d') -- delete motion
+map.set({ "n", "v" }, "<leader>D", '"+D') -- delete line
+
+-- Paste from system clipboard
+map.set("n", "<leader>p", '"+p') -- paste after cursor
+map.set("n", "<leader>P", '"+P') -- paste before cursor
 
 -- TROUBLE.NVIM
 -- Document Diagnostics (Trouble)
