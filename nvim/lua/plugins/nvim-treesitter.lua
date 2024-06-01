@@ -29,6 +29,7 @@ return {
 					"luadoc",
 
 					-- other
+					"go",
 					"json",
 					"vimdoc",
 					"yaml",

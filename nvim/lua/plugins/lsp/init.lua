@@ -1,10 +1,11 @@
 local config = function()
 	local servers = require("plugins.lsp.utils.servers")
+	local lspconfig = require("lspconfig")
 
 	require("neoconf").setup()
 	require("neodev").setup()
 
-	servers:setup(require("lspconfig"), {
+	servers:setup(lspconfig, {
 		on_attach = require("plugins.lsp.utils.attach"),
 		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 		handlers = require("plugins.lsp.utils.handlers"),
@@ -29,6 +30,7 @@ return {
 		"neovim/nvim-lspconfig",
 		config = config,
 		opts = {
+			inlay_hints = { enabled = false },
 			-- options for vim.diagnostic.config()
 			diagnostics = {
 				underline = true,
@@ -96,7 +98,7 @@ return {
 					code_action = "",
 				},
 				symbol_in_winbar = {
-					enable = false,
+					enable = true,
 				},
 			})
 			vim.cmd([[
@@ -110,7 +112,7 @@ return {
   hi! link TerminalBorder Normal
 ]])
 		end,
-		gependencies = {
+		dependencies = {
 			"nvim-treesitter/nvim-treesitter", -- optional
 			"nvim-tree/nvim-web-devicons", -- optional
 		},

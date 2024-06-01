@@ -5,7 +5,6 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-			-- local kind_icons = require("config.icons.kinds")
 
 			cmp.setup({
 				completion = {
@@ -17,9 +16,12 @@ return {
 					end,
 				},
 				performance = {
-					-- debounce = 25,
+					debounce = 25,
 					max_view_entries = 25,
 				},
+				-- experimental = {
+				-- 	ghost_text = false,
+				-- },
 				window = {
 					documentation = {
 						winhighlight = "Normal:None,FloatBorder:None,CursorLine:PmenuSel,Search:None",
@@ -47,16 +49,17 @@ return {
 						name = "nvim_lsp",
 						entry_filter = function(entry)
 							-- ignore emmet
-							if
-								entry:get_kind() == require("cmp.types").lsp.CompletionItemKind.Snippet
-								and entry.source:get_debug_name() == "nvim_lsp:emmet_ls"
-							then
-								return false
-							end
+							-- if
+							-- 	entry:get_kind() == require("cmp.types").lsp.CompletionItemKind.Snippet
+							-- 	and entry.source:get_debug_name() == "nvim_lsp:emmet_ls"
+							-- then
+							-- 	return false
+							-- end
 							return true
 						end,
 					},
-					{ name = "luasnip", keyword_length = 2 },
+					{ name = "luasnip" },
+					{ name = "codeium" },
 				}, {
 					{ name = "buffer" },
 					{ name = "path" },
@@ -64,20 +67,15 @@ return {
 				---@diagnostic disable-next-line: missing-fields
 				formatting = {
 					fields = { "abbr", "menu", "kind" },
-					-- format = function(entity, item)
-					-- 	local format_text = require("plugins.cmp.format")
-					--
-					-- 	item.menu = format_text[entity.source.name]
-					--
-					-- 	if kind_icons[item.kind] then
-					-- 		item.kind = kind_icons[item.kind] .. "  " .. item.kind
-					-- 	end
-					--
-					-- 	return item
-					-- end,
 					format = require("lspkind").cmp_format({
 						mode = "symbol_text",
-						menu = require("plugins.cmp.format"),
+						menu = {
+							nvim_lsp = "[LSP] ",
+							luasnip = "[Snip] ",
+							buffer = "[Buff] ",
+							path = "[Path] ",
+						},
+						symbol_map = { Codeium = "" },
 						before = require("tailwind-tools.cmp").lspkind_format,
 					}),
 				},
@@ -100,27 +98,29 @@ return {
 					{ name = "buffer" },
 				},
 			})
-
-			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-			-- cmp.setup.cmdline(":", {
-			-- 	mapping = cmp.mapping.preset.cmdline(),
-			-- 	sources = cmp.config.sources({
-			-- 		{ name = "path" },
-			-- 	}, {
-			-- 		{ name = "cmdline" },
-			-- 	}),
-			-- })
 		end,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			-- "roobert/tailwindcss-colorizer-cmp.nvim",
 			"onsails/lspkind.nvim",
+			"saadparwaiz1/cmp_luasnip",
 		},
 	},
 	{
-		"aznhe21/actions-preview.nvim",
+		"L3MON4D3/LuaSnip",
+		dependencies = {
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+				end,
+			},
+		},
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
 	},
 }

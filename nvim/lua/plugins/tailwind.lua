@@ -4,7 +4,7 @@ return {
 		enabled = false,
 		config = function()
 			require("tailwindcss-colorizer-cmp").setup({
-				color_square_width = 2,
+				color_square_width = 1,
 			})
 		end,
 	},

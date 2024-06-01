@@ -19,6 +19,10 @@ require("config.options")
 
 local plugins = "plugins"
 
+if vim.fn.isdirectory(vim.v.argv[2]) == 1 then
+	vim.api.nvim_set_current_dir(vim.v.argv[2])
+end
+
 local options = {
 	default = { lazy = true },
 	rtp = {
@@ -44,7 +48,6 @@ vim.api.nvim_create_autocmd("UiEnter", {
 	desc = "Open Neotree automatically",
 	group = "neotree",
 	callback = function()
-		print(vim.fn.argc())
 		if vim.fn.argc() == 0 then
 			vim.cmd("Neotree toggle")
 		end

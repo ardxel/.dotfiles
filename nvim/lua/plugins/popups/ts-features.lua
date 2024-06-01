@@ -1,9 +1,4 @@
-local create_menu = require("config.ui.menu")
-local keymap = vim.keymap
-
-local M = {}
-
-M.ts_features = function()
+local ts_features = function()
 	local opts = {
 		border = {
 			text = {
@@ -23,7 +18,7 @@ M.ts_features = function()
 	}
 
 	local bind = function(menu)
-		keymap.set("n", "<leader>tt", function()
+		vim.keymap.set("n", "<leader>tt", function()
 			local active_clients = vim.lsp.get_active_clients()
 			local proper_clients = { "tsserver", "typescript-tools" }
 
@@ -37,38 +32,8 @@ M.ts_features = function()
 		end, { noremap = true, silent = true })
 	end
 
+	local create_menu = require("config.ui.menu")
 	create_menu(opts, items, bind)
 end
 
-M.neogen_docs = function()
-	local opts = {
-		border = {
-			text = {
-				top = "[Generate docs]",
-				top_align = "center",
-			},
-		},
-	}
-
-	local items = {
-		{ text = "func", cmd = ":Neogen func" },
-		{ text = "type", cmd = ":Neogen type" },
-		{ text = "class", cmd = ":Neogen class" },
-	}
-
-	local bind = function(menu)
-		keymap.set("n", "<leader>ng", function()
-			menu:mount()
-		end)
-	end
-
-	create_menu(opts, items, bind)
-end
-
-return {
-	"MunifTanjim/nui.nvim",
-	config = function()
-		M.ts_features()
-		M.neogen_docs()
-	end,
-}
+return ts_features

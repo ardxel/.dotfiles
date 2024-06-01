@@ -4,7 +4,9 @@ function LspServerManager:new()
 	local private = {}
 	private.servers = {}
 	-- TODO
+
 	private.ignore_servers = {
+
 		-- "tailwindcss",
 		"emmet_ls",
 	}
@@ -95,5 +97,37 @@ serverManager:add("emmet_ls", {})
 
 -- MARKDOWN
 serverManager:add("marksman", {})
+
+-- SQL / PSQL
+serverManager:add("sqlls", {
+	filetypes = { "sql", "mysql", "psql" },
+	root_dir = function(_)
+		return vim.loop.cwd()
+	end,
+})
+
+-- YAMLLS
+serverManager:add("yamlls", {
+	settings = {
+		yaml = {
+			schemas = {
+				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+				["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+				["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+				["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+				["http://json.schemastore.org/stylelintrc"] = ".stylelintrc.{yml,yaml}",
+				["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+			},
+		},
+	},
+})
+
+serverManager:add("gopls", {
+	settings = {
+		gopls = {
+			usePlaceholders = false,
+		},
+	},
+})
 
 return serverManager

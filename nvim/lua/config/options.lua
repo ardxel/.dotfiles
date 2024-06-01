@@ -20,7 +20,8 @@ opt.swapfile = false
 opt.modifiable = true
 opt.pumblend = 0
 opt.termguicolors = true
-vim.api.nvim_set_option_value("clipboard", "unnamed", {})
+vim.g.editorconfig = true
+-- vim.api.nvim_set_option_value("clipboard", "unnamed", {})
 
 -- NEOVIDE
 if vim.g.neovide then
