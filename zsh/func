@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+clear_dev_envs() {
+	pkill -f prettierd
+	pkill -f prettier
+	pkill -f eslint_d
+	pkill -f eslint
+	pkill -f node
+	pkill -f gopls
+	pkill -f nvim
+	watchman watch-del-all >/dev/null
+	echo "All dev envs killed"
+}

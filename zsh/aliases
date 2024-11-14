@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+GOPATH="$(go env get GOPATH)"
+
+alias l="ls -al"
+alias ..="cd .."
+alias vim="nvim"
+alias compose="docker-compose"
+alias air="$GOPATH/bin/air"
