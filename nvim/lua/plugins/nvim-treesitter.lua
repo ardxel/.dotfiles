@@ -1,69 +1,38 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = false,
 		build = ":TSUpdate",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				context = {
-					enable = true,
-				},
-				indent = { enable = true },
-				autotag = { enable = true },
-				ensure_installed = {
-					-- frontend
-					"javascript",
-					"typescript",
-					"html",
-					"xml",
-					"css",
-					"scss",
-					"tsx",
-					"jsdoc",
-
-					-- lua
-					"lua",
-					"luadoc",
-
-					-- other
-					"go",
-					"json",
-					"vimdoc",
-					"yaml",
-					"bash",
-					"dockerfile",
-					"markdown",
-					"gitignore",
-				},
-
-				auto_install = true,
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = true,
-					custom_captures = {
-						["keyword"] = "Bold",
-					},
-				},
-				rainbow = {
-					enable = true,
-					extended_mode = true,
-				},
-			})
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-
 		opts = {
-			mode = "cursor",
-			max_lines = 1,
-			enable = true,
+			context = { enable = true },
+			indent = { enable = true },
+			ensure_installed = {
+				"javascript",
+				"typescript",
+				"html",
+				"xml",
+				"css",
+				"scss",
+				"tsx",
+				"jsdoc",
+				"lua",
+				"luadoc",
+				"go",
+				"json",
+				"vimdoc",
+				"yaml",
+				"bash",
+				"dockerfile",
+				"markdown",
+				"gitignore",
+			},
+			auto_install = true,
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = true,
+			},
 		},
 		config = function(_, opts)
-			require("treesitter-context").setup(opts)
+			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
 }

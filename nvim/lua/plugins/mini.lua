@@ -1,32 +1,28 @@
 return {
 	{
 		"echasnovski/mini.nvim",
-		version = "*",
-		config = function()
-			require("mini.move").setup({})
-		end,
+		version = false,
+	},
+	{
+		"echasnovski/mini.move",
+		opts = {},
+		version = false,
 	},
 	{
 		"echasnovski/mini.surround",
 		lazy = false,
-		config = function()
-			require("mini.surround").setup({
-				silent = true,
-			})
-		end,
+		opts = { silent = true },
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		lazy = true,
 		opts = {
 			enable_autocmd = false,
 		},
 	},
 	{
-		-- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
 		"numToStr/Comment.nvim",
-		opts = {},
 		lazy = false,
+		opts = {},
 	},
 	{
 		"echasnovski/mini.comment",
@@ -42,38 +38,35 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini.animate",
-		event = "VeryLazy",
-		opts = function()
-			-- don't use animate when scrolling with the mouse
-			local mouse_scrolled = false
-			for _, scroll in ipairs({ "Up", "Down" }) do
-				local key = "<ScrollWheel" .. scroll .. ">"
-				vim.keymap.set({ "", "i" }, key, function()
-					mouse_scrolled = true
-					return key
-				end, { expr = true })
-			end
+		"echasnovski/mini.bufremove",
+		keys = {
+			{
+				"<leader>bd",
+				function()
+					local bd = require("mini.bufremove").delete
+					if vim.bo.modified then
+						local choice =
+							vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+						if choice == 1 then -- Yes
+							vim.cmd.write()
+							bd(0)
+						elseif choice == 2 then -- No
+							bd(0, true)
+						end
+					else
+						bd(0)
+					end
+				end,
+				desc = "Delete Buffer",
+			},
 
-			local animate = require("mini.animate")
-
-			return {
-				resize = {
-					timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
-				},
-				scroll = {
-					timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-					subscroll = animate.gen_subscroll.equal({
-						predicate = function(total_scroll)
-							if mouse_scrolled then
-								mouse_scrolled = false
-								return false
-							end
-							return total_scroll > 1
-						end,
-					}),
-				},
-			}
-		end,
+			{
+				"<leader>bD",
+				function()
+					require("mini.bufremove").delete(0, true)
+				end,
+				desc = "Delete Buffer (Force)",
+			},
+		},
 	},
 }

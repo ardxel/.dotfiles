@@ -15,7 +15,7 @@ local neogen_docs = function()
 	}
 
 	local bind = function(menu)
-		keymap.set("n", "<leader>ng", function()
+		vim.keymap.set("n", "<leader>ng", function()
 			menu:mount()
 		end)
 	end

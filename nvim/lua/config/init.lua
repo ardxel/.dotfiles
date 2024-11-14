@@ -10,18 +10,14 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-vim.cmd("language en_US")
-vim.g.mapleader = " "
+if vim.fn.isdirectory(vim.v.argv[2]) == 1 then
+	vim.api.nvim_set_current_dir(vim.v.argv[2])
+end
 
 require("config.globals")
 require("config.keymaps")
 require("config.options")
-
-local plugins = "plugins"
-
-if vim.fn.isdirectory(vim.v.argv[2]) == 1 then
-	vim.api.nvim_set_current_dir(vim.v.argv[2])
-end
+require("config.autocmds")
 
 local options = {
 	default = { lazy = true },
@@ -41,15 +37,4 @@ local options = {
 	change_detection = { notify = false },
 }
 
-require("lazy").setup(plugins, options)
-
-vim.api.nvim_create_augroup("neotree", {})
-vim.api.nvim_create_autocmd("UiEnter", {
-	desc = "Open Neotree automatically",
-	group = "neotree",
-	callback = function()
-		if vim.fn.argc() == 0 then
-			vim.cmd("Neotree toggle")
-		end
-	end,
-})
+require("lazy").setup("plugins", options)

@@ -4,7 +4,7 @@ return {
 		"MunifTanjim/nui.nvim",
 		config = function()
 			local ts_features_popup = require("plugins.popups.ts-features")
-			local neogen_popup = require("plugins.popups.ts-features")
+			local neogen_popup = require("plugins.popups.neogen")
 
 			ts_features_popup()
 			neogen_popup()
@@ -13,15 +13,16 @@ return {
 	-- LUALINE
 	{
 		"nvim-lualine/lualine.nvim",
-		-- event = "VeryLazy",
+		lazy = false,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = function()
-			local symbols = {}
-			symbols.unix = vim.fn.has("macunix") and "" or ""
-			symbols.dos = ""
-			symbols.mac = ""
+		opts = function()
+			local symbols = {
+				unix = vim.fn.has("macunix") and "" or "",
+				dos = "",
+				mac = "",
+			}
 
 			local function my_location()
 				local line = vim.fn.line(".")
@@ -31,10 +32,20 @@ return {
 				return string.format("%2d:%s::%-2d", line, col, total_lines)
 			end
 
-			require("lualine").setup({
+			return {
 				options = {
-					-- theme = "gruvbox_light",
-					theme = "rose-pine",
+					disabled_filetypes = {
+						"dashboard",
+						"filesytem",
+						"mason",
+						"neo-tree",
+						"neo-tree-popup",
+						"null-ls-info",
+						"lazy",
+						"lspinfo",
+						"ministarter",
+						"TelescopePrompt",
+					},
 					globalstatus = true,
 				},
 				sections = {
@@ -52,73 +63,10 @@ return {
 					lualine_y = {},
 					lualine_z = { { my_location } },
 				},
-			})
+			}
 		end,
 	},
-	-- NOICE
-	{
-		"folke/noice.nvim",
-		-- enabled = false,
-		event = "VeryLazy",
-		config = function()
-			require("noice").setup({
-				lsp = {
-					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-					override = {
-						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-						["vim.lsp.util.stylize_markdown"] = true,
-						["cmp.entry.get_documentation"] = true,
-					},
-				},
-				notify = {
-					enabled = false,
-				},
-				cmdline = {
-					view = "cmdline",
-				},
-				messages = {
-					enabled = false,
-				},
-				presets = {
-					bottom_search = true,
-					long_message_to_split = true,
-					lsp_doc_border = true,
-				},
-				routes = {
-					{
-						filter = {
-							event = "notify",
-							find = "No information available",
-						},
-						opts = { skip = true },
-					},
-					{
-						filter = {
-							event = "notify",
-							find = "No code actions available",
-						},
-						opts = { skip = true },
-					},
-					-- {
-					-- 	event = "msg_show",
-					-- 	kind = "",
-					-- 	find = "change",
-					-- 	opts = { skip = true },
-					-- },
-					{
-						filter = {
-							event = "msg_show",
-							kind = "",
-							find = "written",
-						},
-						opts = { skip = true },
-					},
-				},
-			})
-		end,
-
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-		},
-	},
+	config = function(_, opts)
+		require("lualine").setup(opts)
+	end,
 }

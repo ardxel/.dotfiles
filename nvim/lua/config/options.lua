@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+vim.o.virtualedit = ""
 vim.o.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
@@ -10,18 +11,26 @@ opt.completeopt = "menuone,noinsert,noselect"
 opt.ignorecase = true
 opt.number = true
 opt.relativenumber = true
-opt.signcolumn = "yes"
--- opt.colorcolumn = "100"
-opt.pumheight = 10
+opt.cursorlineopt = "number"
+opt.cursorline = true
+opt.signcolumn = "yes:1"
 
 opt.hidden = true
 opt.scrolloff = 10
 opt.swapfile = false
 opt.modifiable = true
-opt.pumblend = 0
 opt.termguicolors = true
+opt.showmode = false
+
+-- vim.g.loaded_netrw = false
+vim.g.loaded_netrwPlugin = 0
 vim.g.editorconfig = true
--- vim.api.nvim_set_option_value("clipboard", "unnamed", {})
+vim.g.encoding = "utf-8"
+vim.g.fileencoding = "utf-8"
+
+if vim.fn.has("nvim-10.0") then
+	opt.smoothscroll = true
+end
 
 -- NEOVIDE
 if vim.g.neovide then

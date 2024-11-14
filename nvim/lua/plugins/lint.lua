@@ -3,27 +3,21 @@ return {
 	lazy = false,
 	config = function()
 		local lint = require("lint")
-		-- eslint_d, luacheck, markdownlint, jsonlint, shellcheck
 		lint.linters_by_ft = {
 			javascript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			typescript = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
-
 			lua = { "luacheck" },
-
 			markdown = { "markdownlint" },
-
 			json = { "jsonlint" },
 			jsonc = { "jsonlint" },
-
 			sh = { "shellcheck" },
 			zsh = { "shellcheck" },
+			bash = { "shellcheck" },
 		}
 
-		local M = {}
-
-		M.lint = function()
+		local try_lint = function()
 			local linters = lint._resolve_linter_by_ft(vim.bo.filetype)
 
 			if #linters > 0 then
@@ -34,7 +28,7 @@ return {
 		---@param ms number
 		---@param fn function
 		---@return function
-		M.debounce = function(ms, fn)
+		local debounce = function(ms, fn)
 			local timer = vim.loop.new_timer()
 			return function(...)
 				local argv = { ... }
@@ -47,7 +41,7 @@ return {
 
 		vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
 			group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-			callback = M.debounce(100, M.lint),
+			callback = debounce(100, try_lint),
 		})
 	end,
 }
