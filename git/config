@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+	name = ardxel
+	email = ardxel@gmail.com
+[core]
+	autocrlf = input
+	safecrlf = true
+[init]
+	defaultBranch = main
+[alias]
+	cm = commit -m
+	s = status
+	d = diff
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+
