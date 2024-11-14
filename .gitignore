@@ -1,13 +1,10 @@
-configstore
-node_modules
-github-copilot
-iterm2
-yarn.lock
-jgit
-simple-update-notifier
+# IGNORE ME
 .DS_Store
-.bash
-tmux/plugins/
+*.log
+.config/tmux-**
+.viminfo
+.zsh_sessions
+.bash_history
+.zsh_history
 yandex-cloud
-.git
-images
+node_modules
