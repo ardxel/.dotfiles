@@ -12,8 +12,8 @@ export PATH="$HOME/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export CONFIG="$HOME/.config"
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins"
 
-source "$CONFIG/.zsh/aliases"
-source "$CONFIG/.zsh/func"
+source "$CONFIG/zsh/.aliases"
+source "$CONFIG/zsh/.func"
 source ~/.local/bin/powerlevel10k/powerlevel10k.zsh-theme
 source "$HOME/.cargo/env"
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"

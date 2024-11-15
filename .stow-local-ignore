@@ -1,0 +1,9 @@
+.DS_Store
+.git
+.gitignore
+README.*
+TODO.*
+Brewfile
+profile.log
+assets
+
