@@ -3,19 +3,8 @@ return {
 	lazy = false,
 	config = function()
 		local lint = require("lint")
-		lint.linters_by_ft = {
-			javascript = { "eslint_d" },
-			javascriptreact = { "eslint_d" },
-			typescript = { "eslint_d" },
-			typescriptreact = { "eslint_d" },
-			lua = { "luacheck" },
-			markdown = { "markdownlint" },
-			json = { "jsonlint" },
-			jsonc = { "jsonlint" },
-			sh = { "shellcheck" },
-			zsh = { "shellcheck" },
-			bash = { "shellcheck" },
-		}
+		local mason_bridge = require("mason-bridge")
+		lint.linters_by_ft = mason_bridge.get_linters()
 
 		local try_lint = function()
 			local linters = lint._resolve_linter_by_ft(vim.bo.filetype)

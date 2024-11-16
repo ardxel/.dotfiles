@@ -165,6 +165,42 @@ return {
 		config = true,
 	},
 	{
+		"frostplexx/mason-bridge.nvim",
+		opts = {
+			overrides = {
+				linters = {
+					javascript = { "eslint_d" },
+					javascriptreact = { "eslint_d" },
+					typescript = { "eslint_d" },
+					typescriptreact = { "eslint_d" },
+					lua = { "luacheck" },
+					markdown = { "markdownlint" },
+					json = { "jsonlint" },
+					jsonc = { "jsonlint" },
+					sh = { "shellcheck" },
+					zsh = { "shellcheck" },
+					bash = { "shellcheck" },
+				},
+				formatters = {
+					lua = { "stylua" },
+					typescript = { "prettierd" },
+					typescriptreact = { "prettierd" },
+					javascript = { "prettierd" },
+					javascriptreact = { "prettierd" },
+					html = { "prettierd" },
+					css = { "prettierd" },
+					scss = { "prettierd" },
+					sh = { "shfmt" },
+					zsh = { "shfmt" },
+					json = { "prettierd" },
+					jsonc = { "prettierd" },
+					docker = { "prettierd" },
+					markdown = { "prettierd" },
+				},
+			},
+		},
+	},
+	{
 		"dmmulroy/ts-error-translator.nvim",
 		config = function()
 			require("ts-error-translator").setup()
