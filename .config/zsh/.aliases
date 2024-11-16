@@ -2,6 +2,11 @@
 
 GOPATH="$(go env get GOPATH)"
 
+if command -v gls &> /dev/null; then
+	alias ls="gls --color"
+fi
+
+
 alias l="ls -al"
 alias ..="cd .."
 alias vim="nvim"
