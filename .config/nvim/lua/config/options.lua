@@ -4,6 +4,7 @@ vim.o.virtualedit = ""
 vim.o.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
+opt.cmdheight = 0
 opt.smarttab = true
 opt.autoindent = true
 opt.completeopt = "menuone,noinsert,noselect"
