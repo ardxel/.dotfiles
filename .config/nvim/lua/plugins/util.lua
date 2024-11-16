@@ -1,5 +1,4 @@
 return {
-	{ "vimpostor/vim-tpipeline" },
 	{ "windwp/nvim-autopairs", opts = {} },
 	{
 		"danymat/neogen",

@@ -1,5 +1,4 @@
 return {
-	-- NUI
 	{
 		"MunifTanjim/nui.nvim",
 		config = function()
@@ -10,7 +9,6 @@ return {
 			neogen_popup()
 		end,
 	},
-	-- LUALINE
 	{
 		"nvim-lualine/lualine.nvim",
 		lazy = false,
@@ -32,41 +30,41 @@ return {
 				return string.format("%2d:%s::%-2d", line, col, total_lines)
 			end
 
+			local sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diagnostics" },
+				lualine_c = { "filename", },
+				lualine_x = {
+					"encoding",
+					{
+						"fileformat",
+						symbols = symbols,
+					},
+					"filetype",
+				},
+				lualine_y = {},
+				lualine_z = { { my_location } },
+			}
+
 			return {
 				options = {
 					disabled_filetypes = {
 						"dashboard",
-						"filesytem",
 						"mason",
 						"neo-tree",
 						"neo-tree-popup",
-						"null-ls-info",
 						"lazy",
-						"lspinfo",
 						"ministarter",
 						"TelescopePrompt",
 					},
 					globalstatus = true,
 				},
-				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "filename" },
-					lualine_x = {
-						"encoding",
-						{
-							"fileformat",
-							symbols = symbols,
-						},
-						"filetype",
-					},
-					lualine_y = {},
-					lualine_z = { { my_location } },
-				},
+				sections = sections,
 			}
 		end,
 	},
-	config = function(_, opts)
-		require("lualine").setup(opts)
-	end,
+	{
+		"vimpostor/vim-tpipeline",
+		event = "VeryLazy" -- this line fixed second lualine
+	},
 }
