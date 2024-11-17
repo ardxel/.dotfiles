@@ -9,7 +9,17 @@ fi
 
 alias l="ls -al"
 alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd	~"
+alias dot="cd ~/.dotfiles"
+alias g="git"
 alias vim="nvim"
 alias compose="docker-compose"
 alias air="$GOPATH/bin/air"
 alias tr="tree -a -L 3 --gitignore -I '.git'"
+
+alias tm="tmux"
+alias tml="tmux list-sessions"
+alias tmat="tmux attach -t"
+alias	tmns="tmux new -s"
