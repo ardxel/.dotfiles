@@ -1,9 +1,5 @@
 return {
 	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
-	},
-	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -16,6 +12,7 @@ return {
 					builtin.find_files({
 						no_ignore = false,
 						hidden = true,
+						cwd = require("utils").get_embed_arg_path()
 					})
 				end,
 				desc = "find files in your current working directory, respect .gitignore",
@@ -37,9 +34,12 @@ return {
 					local builtin = require("telescope.builtin")
 					builtin.live_grep({
 						additional_args = { "--hidden" },
+						cwd = require("utils").get_embed_arg_path()
+
 					})
 				end,
-				desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+				desc =
+				"Search for a string in your current working directory and get results live as you type, respects .gitignore",
 			},
 			{
 				"<leader>fb",
@@ -88,7 +88,7 @@ return {
 				},
 				extensions = {
 					fzf = {
-						fuzzy = true, -- false will only do exact matching
+						fuzzy = true,             -- false will only do exact matching
 						override_generic_sorter = true, -- override the generic sorter
 						override_file_sorter = true, -- override the file sorter
 						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
@@ -102,6 +102,10 @@ return {
 			telescope.load_extension("fzf")
 			telescope.load_extension("file_browser")
 		end,
+	},
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",

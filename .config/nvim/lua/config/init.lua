@@ -10,9 +10,6 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-if vim.fn.isdirectory(vim.v.argv[2]) == 1 then
-	vim.api.nvim_set_current_dir(vim.v.argv[2])
-end
 
 require("config.globals")
 require("config.keymaps")

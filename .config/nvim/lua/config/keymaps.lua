@@ -5,10 +5,6 @@ local function with_desc(desc)
 	return extended
 end
 
--- DIRECTORY NAVIGATION
--- map.set("n", "<leader>e", ":Neotree toggle<CR>", with_desc("Neotree toggle"))
--- map.set("n", "<leader>m", ":Neotree focus<CR>", with_desc("Neotree focus"))
-
 -- PANEL NAVIGATION
 map.set("n", "<C-h>", "<C-w>h", with_desc("Move left"))
 map.set("n", "<C-j>", "<C-w>j", with_desc("Move down"))
@@ -28,9 +24,9 @@ map.set("n", "<leader>sh", ":split<CR>", with_desc("Split horizontal"))
 -- SELECT ALL
 map.set("n", "<C-s-a>", "gg<S-v>G", { desc = "Select all" })
 
--- BUFFERLINE MANAGMENT
-map.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", with_desc("Buffer Next"))
-map.set("n", "<s-Tab>", "<cmd>BufferLineCyclePrev<CR>", with_desc("Buffer Prev"))
+-- BUFFER MANAGMENT
+map.set("n", "<Tab>", ":bnext<CR>", with_desc("Buffer Next"))
+map.set("n", "<s-Tab>", ":bprev<CR>", with_desc("Buffer Prev"))
 
 map.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy" })
 map.set({ "n", "x" }, "<leader>Y", '"+yg_', { desc = "Copy to clipboard" })
