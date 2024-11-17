@@ -1,0 +1,47 @@
+[general]
+live_config_reload = true
+
+[window]
+startup_mode = "FullScreen"
+blur = true
+opacity = 0.8
+option_as_alt = "Both"
+
+[font]
+size = 14.00
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Retina"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font Mono"
+style = "SemiBold"
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[cursor.vi_mode_style]
+shape = "Beam"
+
+[keyboard]
+bindings = [
+	{key = "Space", mods = "Control|shift", action = "ToggleViMode"},
+	{ key = "}", mods = "Control|shift", action = "increasefontsize" },
+	{ key = "{", mods = "Control|Shift", action = "DecreaseFontSize" },
+	{ key = "H", mods = "Control|Shift", action = "WordLeft" }, # Ctrl-A
+	{ key = "L", mods = "Control|Shift", action = "WordRight" }, # Ctrl-E
+# { key: Left, mods: Alt, chars: "\x1bb" },
+# { key: Right, mods: Alt, chars: "\x1bf" },
+# { key: K, mods: Shift|Alt, action: ScrollPageUp },
+# { key: J, mods: Shift|Alt, action: ScrollPageDown },
+]
