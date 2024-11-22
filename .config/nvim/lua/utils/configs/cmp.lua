@@ -1,4 +1,6 @@
-local config = function()
+local M = {}
+
+M.setup = function()
 	local cmp = require("cmp")
 	local lspkind = require("lspkind")
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -57,14 +59,4 @@ local config = function()
 	})
 end
 
-return {
-	"hrsh7th/nvim-cmp",
-	event = "InsertEnter",
-	config = config,
-	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
-		"onsails/lspkind.nvim",
-	},
-}
+return M

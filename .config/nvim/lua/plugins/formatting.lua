@@ -13,11 +13,10 @@ return {
 				quiet = false, -- not recommended to change
 			},
 			formatter_by_ft = mason_bridge.get_formatters(),
-			format_on_save = {
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
-			},
+			format_on_save = function()
+				require("conform").formatters_by_ft = mason_bridge.get_formatters()
+				return { lsp_fallback = true, async = false, timeout_ms = 1000 }
+			end,
 			formatters = {
 				injected = { options = { ignore_errors = true } },
 			},
@@ -25,13 +24,13 @@ return {
 	end,
 	config = function(_, opts)
 		local conform = require("conform")
-
 		conform.setup(opts)
 
+		-- https://github.com/frostplexx/mason-bridge.nvim?tab=readme-ov-file#dynamically-load-linters-and-formatters
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			pattern = "*",
 			callback = function(args)
-				require("conform").format({ bufnr = args.buf })
+				conform.format({ bufnr = args.buf })
 			end,
 		})
 	end,

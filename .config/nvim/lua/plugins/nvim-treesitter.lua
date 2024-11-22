@@ -4,7 +4,6 @@ return {
 		build = ":TSUpdate",
 		opts = {
 			context = { enable = true },
-			indent = { enable = true },
 			ensure_installed = {
 				"javascript",
 				"typescript",
@@ -14,15 +13,18 @@ return {
 				"scss",
 				"tsx",
 				"jsdoc",
+				"regex",
 				"lua",
 				"luadoc",
 				"go",
+				"vim",
 				"json",
 				"vimdoc",
 				"yaml",
 				"bash",
 				"dockerfile",
 				"markdown",
+				"markdown_inline",
 				"gitignore",
 			},
 			auto_install = true,
@@ -34,5 +36,15 @@ return {
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
+	},
+	{
+		"luckasRanarison/tailwind-tools.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		opts = {},
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		event = "LazyFile",
+		opts = {},
 	},
 }

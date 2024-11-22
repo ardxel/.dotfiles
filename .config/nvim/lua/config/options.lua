@@ -4,7 +4,7 @@ vim.o.virtualedit = ""
 vim.o.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
-opt.cmdheight = 0
+opt.cmdheight = 1
 opt.smarttab = true
 opt.autoindent = true
 opt.completeopt = "menuone,noinsert,noselect"
@@ -22,16 +22,13 @@ opt.swapfile = false
 opt.modifiable = true
 opt.termguicolors = true
 opt.showmode = false
+opt.smoothscroll = true
 
 -- vim.g.loaded_netrw = false
 vim.g.loaded_netrwPlugin = 0
 vim.g.editorconfig = true
 vim.g.encoding = "utf-8"
 vim.g.fileencoding = "utf-8"
-
-if vim.fn.has("nvim-10.0") then
-	opt.smoothscroll = true
-end
 
 -- NEOVIDE
 if vim.g.neovide then

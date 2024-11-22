@@ -1,14 +1,11 @@
 return {
+	{ "echasnovski/mini.nvim", version = false },
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	{
 		"folke/which-key.nvim",
-		enabled = false,
 		event = "VeryLazy",
 		opts = {
-			delay = 1000,
-			spelling = {
-				enabled = false,
-			},
+			delay = 2000,
 		},
 		keys = {
 			{

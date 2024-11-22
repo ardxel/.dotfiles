@@ -35,6 +35,11 @@ map.set({ "n", "x" }, "<leader>D", '"+dg_', { desc = "Delete line and copy to cl
 map.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from vim proccess" })
 map.set({ "n", "x" }, "<leader>P", '"+P', { desc = "Paste from clipboard" })
 
+map.set("c", "<C-F>", "<Left>", { noremap = true, desc = "CMD: Move cursor left" })
+map.set("c", "<C-B>", "<Right>", { noremap = true, desc = "CMD: Move cursor right" })
+map.set("c", "<Esc>b", "<S-Left>", { noremap = true, desc = "CMD: Move cursor on word left" })
+map.set("c", "<C-a>", "<S-Right>", { noremap = true, desc = "CMD: Move cursor on word right" })
+
 -- IF NEOVIDE
 if vim.g.neovide then
 	-- Allow clipboard copy paste in neovim
