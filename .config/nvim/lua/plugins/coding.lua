@@ -106,18 +106,33 @@ return {
 		event = "LazyFile",
 	},
 	{
+		-- FIX:  fix VM warning about overwriting mappings
 		"mg979/vim-visual-multi",
 		-- lualine is using VM statusline for mode highlights permanently,
 		-- lualine is not lazy loading, and there can be problems.
-		-- event = "LazyFile",
+		event = "LazyFile",
 		init = function()
 			vim.g.VM_silent_exit = 1
 			vim.g.VM_set_statusline = 0
-			vim.g.VM_maps = {
-				["Add Cursor Up"] = "<M-C-Up>",
-				["Add Cursor Down"] = "<M-C-Down>",
-			}
+			-- vim.g.VM_maps = {
+			-- 	["Find Under"] = "",
+			-- 	["Undo"] = "",
+			-- 	["Redo"] = "",
+			-- 	["<BS>"] = "",
+			-- }
 		end,
+		-- config = function()
+		-- 	local set = vim.keymap.set
+		--
+		-- 	set("n", "<M-C-Down", "<Plug>(VM-Add-Cursor-Down)", { silent = true })
+		-- 	set("n", "<M-C-Up", "<Plug>(VM-Add-Cursor-Up)", { silent = true })
+		-- 	set("n", "<C-n>", "<Plug>(VM-Find-Under)", { silent = true })
+		-- 	set("n", "]", "<Plug>(VM-Find-Next)", { silent = true })
+		-- 	set("n", "[", "<Plug>(VM-Find-Prev)", { silent = true })
+		-- 	set("n", "q", "<Plug>(VM-Skip-Region)", { silent = true })
+		-- 	set("n", "Q", "<Plug>(VM-Remove-Region)", { silent = true })
+		-- 	set("n", "\\A", "<Plug>(VM-Select-All)", { silent = true })
+		-- end,
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
