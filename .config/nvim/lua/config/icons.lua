@@ -14,11 +14,8 @@ return {
 		GitConflict = "",
 		GitDelete = "",
 		GitIgnored = "◌",
-		GitRenameH = "➜",
 		GitSign = "▎",
 		GitStaged = "✓",
-		GitUnstaged = "✗",
-		GitUntracked = "★",
 	},
 	kinds = {
 		Text = "󰉿",

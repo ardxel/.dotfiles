@@ -1,8 +1,16 @@
 local M = {}
 
 M.setup = function(opts)
+	vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+
+	for severity, icon in pairs(opts.diagnostics.signs.text) do
+		local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
+		name = "DiagnosticSign" .. name
+		vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+	end
+
 	local lsp_utils = require("utils.lsp")
-	local servers = lsp_utils.servers()
+	local servers = vim.deepcopy(lsp_utils.servers)
 	local lspconfig = require("lspconfig")
 	local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 	local capabilities = vim.tbl_deep_extend(
@@ -22,8 +30,6 @@ M.setup = function(opts)
 			handlers = lsp_utils.handlers,
 		}))
 	end
-
-	vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 end
 
 return M

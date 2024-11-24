@@ -3,8 +3,9 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "LazyFile",
 		opts = function()
-			local signs = require("config.icons").signs
-			local o = {
+			local icons = require("config.icons")
+
+			return {
 				inlay_hints = { enabled = false },
 				diagnostics = {
 					underline = true,
@@ -17,10 +18,10 @@ return {
 					},
 					signs = {
 						text = {
-							[vim.diagnostic.severity.ERROR] = signs.Error,
-							[vim.diagnostic.severity.WARN] = signs.Warn,
-							[vim.diagnostic.severity.HINT] = signs.Hint,
-							[vim.diagnostic.severity.INFO] = signs.Info,
+							[vim.diagnostic.severity.ERROR] = icons.signs.ERROR,
+							[vim.diagnostic.severity.WARN] = icons.signs.WARN,
+							[vim.diagnostic.severity.HINT] = icons.signs.HINT,
+							[vim.diagnostic.severity.INFO] = icons.signs.INFO,
 						},
 					},
 				},
@@ -32,16 +33,14 @@ return {
 					timeout_ms = nil,
 				},
 			}
-
-			return o
 		end,
 		config = function(_, opts)
 			require("utils.configs.lsp").setup(opts)
 		end,
 		dependencies = {
 			{
-				"williamboman/mason.nvim",
 				build = ":MasonUpdate",
+				"williamboman/mason.nvim",
 			},
 			"williamboman/mason-lspconfig.nvim",
 			"windwp/nvim-autopairs",
@@ -112,7 +111,6 @@ return {
 					javascriptreact = { "eslint_d" },
 					typescript = { "eslint_d" },
 					typescriptreact = { "eslint_d" },
-					lua = { "luacheck" },
 					markdown = { "markdownlint" },
 					json = { "jsonlint" },
 					jsonc = { "jsonlint" },

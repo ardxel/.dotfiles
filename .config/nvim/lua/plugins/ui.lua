@@ -3,8 +3,8 @@ return {
 		"MunifTanjim/nui.nvim",
 		config = function()
 			local utils = require("utils")
-
 			local neogen_docs = utils.create_popup_menu({
+
 				{ text = "func", action = ":Neogen func" },
 				{ text = "type", action = ":Neogen type" },
 				{ text = "class", action = ":Neogen class" },
@@ -58,7 +58,10 @@ return {
 			local mode = {
 				"mode",
 				fmt = function(mode)
-					return vim.iter(string.gmatch(vim.fn["vm#themes#statusline"](), "%S+")):nth(2) or mode
+					if package.loaded["vim-visual-multi"] then
+						return vim.iter(string.gmatch(vim.fn["vm#themes#statusline"](), "%S+")):nth(2) or mode
+					end
+					return mode
 				end,
 			}
 
@@ -166,6 +169,9 @@ return {
 	{
 		"vimpostor/vim-tpipeline",
 		event = "VeryLazy", -- this line fixed second statusbar
+		init = function()
+			vim.g.tpipeline_restore = 1
+		end,
 	},
 	{
 		"folke/noice.nvim",
@@ -201,11 +207,43 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		event = "LazyFile",
+		---@module "ibl"
+		---@type ibl.config
 		opts = {
+			indent = {
+				char = "│",
+				tab_char = "│",
+			},
 			scope = {
 				show_start = false,
 				show_end = false,
 			},
+			exclude = {
+				filetypes = {
+					"Trouble",
+					"alpha",
+					"dashboard",
+					"help",
+					"lazy",
+					"mason",
+					"neo-tree",
+					"notify",
+					"snacks_notif",
+					"snacks_terminal",
+					"snacks_win",
+					"toggleterm",
+					"trouble",
+				},
+			},
+		},
+	},
+	{
+		"echasnovski/mini.indentscope",
+		version = false,
+		event = "LazyFile",
+		opts = {
+			symbol = "│",
+			options = { try_as_border = true },
 		},
 	},
 }

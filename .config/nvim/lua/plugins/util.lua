@@ -13,4 +13,14 @@ return {
 			},
 		},
 	},
+	{
+		"zakissimo/smoji.nvim",
+		dependencies = { "stevearc/dressing.nvim" },
+		cmd = "Emoji",
+		config = function()
+			local smoji = require("smoji")
+			vim.api.nvim_del_user_command("Smoji")
+			vim.api.nvim_create_user_command("Emoji", smoji.select, { nargs = 0 })
+		end,
+	},
 }

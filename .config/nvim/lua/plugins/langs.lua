@@ -2,6 +2,9 @@ return {
 	-- GOLANG
 	{
 		"ray-x/go.nvim",
+		event = "LazyFile",
+		ft = { "go", "gomod" },
+		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 		dependencies = {
 			"ray-x/guihua.lua",
 			"neovim/nvim-lspconfig",
@@ -20,13 +23,11 @@ return {
 
 			return opts
 		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
 	-- TYPESCRIPT
 	{
 		"pmizio/typescript-tools.nvim",
+		event = "LazyFile",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"neovim/nvim-lspconfig",
