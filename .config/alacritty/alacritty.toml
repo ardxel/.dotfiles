@@ -15,15 +15,15 @@ family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [font.bold]
-family = "FiraCode Nerd Font Mono"
+family = "Fira Code"
 style = "Bold"
 
 [font.italic]
-family = "FiraCode Nerd Font Mono"
-style = "Retina"
+family = "Fira Code"
+style = "Regular"
 
 [font.bold_italic]
-family = "FiraCode Nerd Font Mono"
+family = "Fira Code"
 style = "SemiBold"
 
 [cursor.style]
