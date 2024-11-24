@@ -1,11 +1,17 @@
 # IGNORE ME
 .DS_Store
 *.log
+node_modules
+
 .config/tmux-**
+.config/github-copilot
+.config/yandex-cloud
+
 .viminfo
-.zsh_sessions
+.lazy-lock.json
+
 .bash_history
 .zcompdump
+.zsh_sessions
 .zsh_history
-yandex-cloud
-node_modules
+*.bak
