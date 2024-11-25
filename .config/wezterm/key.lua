@@ -13,6 +13,12 @@ M.setup = function(config)
 		-- Clipboard
 		{ mods = "SUPER", key = "c", action = act.CopyTo("Clipboard") },
 		{ mods = "SUPER", key = "v", action = act.PasteFrom("Clipboard") },
+		{ mods = "CTRL|SHIFT", key = "L", action = act.ShowDebugOverlay },
+		{
+			mods = "CTRL|SHIFT",
+			key = "I",
+			action = wezterm.action.EmitEvent("toggle-background"),
+		},
 	}
 end
 
