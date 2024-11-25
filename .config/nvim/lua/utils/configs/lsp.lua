@@ -1,8 +1,6 @@
 local M = {}
 
 M.setup = function(opts)
-	vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-
 	for severity, icon in pairs(opts.diagnostics.signs.text) do
 		local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
 		name = "DiagnosticSign" .. name

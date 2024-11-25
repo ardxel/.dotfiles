@@ -108,6 +108,7 @@ M.on_attach = function(_, bufnr)
 	-- keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts, "lspsaga hover")
 end
 
+-- Add the border on hover and on signature help popup window
 M.border = function(hl_name)
 	return {
 		{ "┌", hl_name },
@@ -120,12 +121,29 @@ M.border = function(hl_name)
 		{ "│", hl_name },
 	}
 end
--- Add the border on hover and on signature help popup window
 M.handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 		border = M.border("FloatBorder"),
 	}),
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = M.border("FloatBorder") }),
+	["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		underline = false,
+		virtual_text = {
+			spacing = 4,
+			source = "if_many",
+			prefix = function(diagnostic)
+				if diagnostic.severity == vim.diagnostic.severity.ERROR then
+					return "" -- Nerd font icon for error
+				elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+					return "" -- Nerd font icon for warning
+				elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+					return "" -- Nerd font icon for info
+				else
+					return "" -- Nerd font icon for hint
+				end
+			end,
+		},
+	}),
 }
 
 return M
