@@ -4,6 +4,8 @@ local M = {}
 ---@param config Config
 M.setup = function(config)
 	config.font = wezterm.font({ family = "Fira Code", weight = "Regular" })
+	config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+
 	config.font_rules = {
 		{
 			intensity = "Normal",
@@ -15,8 +17,26 @@ M.setup = function(config)
 			}),
 		},
 		{
+			intensity = "Normal",
+			italic = false,
+			font = wezterm.font({
+				family = "Fira Code",
+				weight = "Regular",
+				style = "Normal",
+			}),
+		},
+		{
 			intensity = "Half",
 			italic = true,
+			font = wezterm.font({
+				family = "Fira Code",
+				weight = "DemiBold",
+				style = "Normal",
+			}),
+		},
+		{
+			intensity = "Half",
+			italic = false,
 			font = wezterm.font({
 				family = "Fira Code",
 				weight = "DemiBold",
