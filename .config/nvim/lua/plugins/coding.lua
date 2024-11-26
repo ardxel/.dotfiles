@@ -108,7 +108,9 @@ return {
 		"mg979/vim-visual-multi",
 		-- lualine is using VM statusline for mode highlights permanently,
 		-- lualine is not lazy loading, and there can be problems.
-		event = "LazyFile",
+		-- event = "LazyFile",
+		lazy = false,
+		priority = 1000,
 		init = function()
 			vim.g.VM_silent_exit = 1
 			vim.g.VM_set_statusline = 0

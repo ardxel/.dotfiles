@@ -58,10 +58,7 @@ return {
 			local mode = {
 				"mode",
 				fmt = function(mode)
-					if package.loaded["vim-visual-multi"] then
-						return vim.iter(string.gmatch(vim.fn["vm#themes#statusline"](), "%S+")):nth(2) or mode
-					end
-					return mode
+					return vim.iter(string.gmatch(vim.fn["vm#themes#statusline"](), "%S+")):nth(2) or mode
 				end,
 			}
 

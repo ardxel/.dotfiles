@@ -8,13 +8,13 @@ return {
 			return {
 				inlay_hints = { enabled = false },
 				diagnostics = {
-					underline = true,
+					underline = false,
 					update_in_insert = false,
 					severity_sort = true,
 					virtual_text = {
 						spacing = 4,
 						source = "if_many",
-						prefix = "●",
+						prefix = "",
 					},
 					signs = {
 						text = {
@@ -49,6 +49,11 @@ return {
 
 	{
 		"nvimdev/lspsaga.nvim",
+		event = "LazyFile",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter", -- optional
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
 		opts = {
 			move_in_saga = { prev = "<C-k>", next = "<C-j>" },
 			code_action = {
@@ -65,10 +70,6 @@ return {
 			symbol_in_winbar = {
 				enable = false,
 			},
-		},
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
 		},
 	},
 	{
