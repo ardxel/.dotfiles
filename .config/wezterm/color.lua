@@ -20,28 +20,20 @@ for filename in io.popen('ls "' .. assets_path .. '"'):lines() do
 end
 table.insert(M.images, empty_image_trigger)
 
-M._get_background_layer = function()
-	return {
-		source = { File = "" },
-		hsb = { brightness = M._brightness },
-		horizontal_align = "Center",
-	}
-end
-
 M._set_next_background = function(window)
 	if #M.images == 0 then
 		wezterm.log_info("No images found in " .. assets_path)
 	end
 
-	local overrides = window:get_config_overrides() or {}
-	local layer = M._get_background_layer()
+	local overrides = window:get_config_overrides() or {
+		window_background_image_hsb = { brightness = 0.03 },
+	}
 	local image = M.images[M._index_current_img]
 
 	if image == empty_image_trigger then
-		overrides.background = nil
+		overrides.window_background_image = nil
 	else
-		layer.source.File = image
-		overrides.background = { layer }
+		overrides.window_background_image = image
 	end
 
 	window:set_config_overrides(overrides)
@@ -50,24 +42,18 @@ end
 
 M._change_brightness = function(window, value)
 	local overrides = window:get_config_overrides() or {}
-
-	if overrides == nil or overrides.background == nil then
-		return
-	end
-
 	local max_brightness = 0.30
-	local layer = overrides.background[1]
-	local brightness = layer.hsb.brightness ---@type number
-	brightness = brightness + value
-	brightness = math.max(0, brightness)
-	brightness = math.min(max_brightness, brightness)
-	layer.hsb.brightness = brightness
-	overrides.background = { layer }
+	local hsb = overrides.window_background_image_hsb or { brightness = M._brightness }
+
+	hsb.brightness = hsb.brightness + value
+	hsb.brightness = math.max(0, hsb.brightness)
+	hsb.brightness = math.min(max_brightness, hsb.brightness)
+	overrides.window_background_image_hsb = hsb
 	window:set_config_overrides(overrides)
-	M._brightness = brightness
+	M._brightness = hsb.brightness
 end
 
-M.setup = function(c)
+M.setup = function()
 	wezterm.on("toggle-background", function(window)
 		M._set_next_background(window)
 	end)
