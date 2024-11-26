@@ -19,6 +19,16 @@ M.setup = function(config)
 			key = "I",
 			action = wezterm.action.EmitEvent("toggle-background"),
 		},
+		{
+			mods = "CTRL|SHIFT",
+			key = "O",
+			action = wezterm.action.EmitEvent("increase-brightness"),
+		},
+		{
+			mods = "CTRL|SHIFT",
+			key = "P",
+			action = wezterm.action.EmitEvent("decrease-brightness"),
+		},
 	}
 end
 

@@ -1,6 +1,4 @@
-local wezterm = require("wezterm")
 local M = {}
-
 ---@param config Config
 M.setup = function(config)
 	config.hyperlink_rules = {
