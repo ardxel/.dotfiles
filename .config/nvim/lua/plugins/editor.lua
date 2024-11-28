@@ -121,6 +121,41 @@ return {
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	},
 	{
+		"MunifTanjim/nui.nvim",
+		config = function()
+			local utils = require("utils.popup")
+			local neogen_docs = utils.create_popup_menu({
+
+				{ text = "func", action = ":Neogen func" },
+				{ text = "type", action = ":Neogen type" },
+				{ text = "class", action = ":Neogen class" },
+			}, { title = "[Generate docs]" })
+
+			vim.keymap.set("n", "<leader>ng", function()
+				neogen_docs:mount()
+			end)
+
+			local ts_features = utils.create_popup_menu({
+				{ text = "Organize imports", action = "TSToolsOrganizeImports" },
+				{ text = "Remove unused imports", action = "TSToolsRemoveUnusedImports" },
+				{ text = "Add missing imports", action = "TSToolsAddMissingImports" },
+				{ text = "Sort imports", action = "TSToolsSortImports" },
+				{ text = "Remove unused statements", action = "TSToolsRemoveUnused" },
+				{ text = "Fix all", action = "TSToolsFixAll" },
+			}, { title = "[Typescript features]" })
+
+			vim.keymap.set("n", "<leader>tt", function()
+				local ts_servers = { "tsserver", "typescript-tools" }
+				local active_clients = vim.lsp.get_clients()
+				for _, client in ipairs(active_clients) do
+					if vim.tbl_contains(ts_servers, client) then
+						ts_features:mount()
+					end
+				end
+			end, { noremap = true, silent = true })
+		end,
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		event = "LazyFile",
 		opts = {},

@@ -3,7 +3,6 @@ local M = {}
 local act = wezterm.action
 M.mod = wezterm.target_triple:find("windows") and "SHIFT|CTRL" or "SHIFT|SUPER"
 
----@param config Config
 M.setup = function(config)
 	config.disable_default_key_bindings = true
 	config.keys = {
@@ -17,7 +16,7 @@ M.setup = function(config)
 		{
 			mods = "CTRL|SHIFT",
 			key = "I",
-			action = wezterm.action.EmitEvent("toggle-background"),
+			action = wezterm.action.EmitEvent("toggle-image"),
 		},
 		{
 			mods = "CTRL|SHIFT",
