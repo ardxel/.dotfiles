@@ -1,11 +1,10 @@
 local wezterm = require("wezterm")
 local M = {}
 
----@param config Config
 M.setup = function(config)
 	config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 	config.font = wezterm.font_with_fallback({
-		"FiraCode Nerd Font",
+		"FiraCode Nerd Font Mono",
 		"Noto Color Emoji",
 		"Symbols Nerd Font",
 	})
@@ -15,8 +14,8 @@ M.setup = function(config)
 			intensity = "Normal",
 			italic = true,
 			font = wezterm.font({
-				family = "FiraCode Nerd Font",
-				weight = 450,
+				family = "FiraCode Nerd Font Mono",
+				weight = 500,
 				style = "Normal",
 			}),
 		},
@@ -24,8 +23,8 @@ M.setup = function(config)
 			intensity = "Normal",
 			italic = false,
 			font = wezterm.font({
-				family = "FiraCode Nerd Font",
-				weight = 450,
+				family = "FiraCode Nerd Font Mono",
+				weight = 500,
 				style = "Normal",
 			}),
 		},
@@ -33,8 +32,8 @@ M.setup = function(config)
 			intensity = "Half",
 			italic = true,
 			font = wezterm.font({
-				family = "FiraCode Nerd Font",
-				weight = 500,
+				family = "FiraCode Nerd Font Mono",
+				weight = "Medium",
 				style = "Normal",
 			}),
 		},
@@ -42,7 +41,7 @@ M.setup = function(config)
 			intensity = "Half",
 			italic = false,
 			font = wezterm.font({
-				family = "FiraCode Nerd Font",
+				family = "FiraCode Nerd Font Mono",
 				weight = "Medium",
 				style = "Normal",
 			}),
@@ -51,7 +50,7 @@ M.setup = function(config)
 			intensity = "Bold",
 			italic = false,
 			font = wezterm.font({
-				family = "FiraCode Nerd Font",
+				family = "FiraCode Nerd Font Mono",
 				weight = "Bold",
 				style = "Normal",
 			}),
@@ -60,7 +59,7 @@ M.setup = function(config)
 			intensity = "Bold",
 			italic = true,
 			font = wezterm.font({
-				family = "FiraCode Nerd Font",
+				family = "FiraCode Nerd Font Mono",
 				weight = "Bold",
 				style = "Normal",
 			}),
