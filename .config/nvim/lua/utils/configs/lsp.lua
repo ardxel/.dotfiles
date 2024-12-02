@@ -7,8 +7,9 @@ M.setup = function(opts)
 		vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
 	end
 
-	local lsp_utils = require("utils.servers")
-	local servers = vim.deepcopy(lsp_utils.servers)
+	local lsp_utils = require("utils.lsp")
+	local servers = require("utils.servers").servers
+	servers = vim.deepcopy(servers)
 	local lspconfig = require("lspconfig")
 	local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 	local capabilities = vim.tbl_deep_extend(
