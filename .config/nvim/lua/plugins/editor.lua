@@ -6,48 +6,6 @@ return {
 		},
 		keys = {
 			{
-				"<leader>ff",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.find_files({
-						no_ignore = false,
-						hidden = true,
-						cwd = require("utils").get_embed_arg_path(),
-					})
-				end,
-				desc = "find files in your current working directory, respect .gitignore",
-			},
-			{
-				"<leader>fF",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.find_files({
-						no_ignore = true,
-						hidden = false,
-					})
-				end,
-				desc = "find files in your current working directory, no respect .gitignore",
-			},
-			{
-				"<leader>fg",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.live_grep({
-						additional_args = { "--hidden" },
-						cwd = require("utils").get_embed_arg_path(),
-					})
-				end,
-				desc = "Search for a string in your current working directory and get results live as you type",
-			},
-			{
-				"<leader>fb",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.buffers()
-				end,
-				desc = "show buffers",
-			},
-			{
 				"<leader>fe",
 				function()
 					local file_browser = require("telescope").extensions.file_browser
@@ -70,55 +28,64 @@ return {
 				end,
 			},
 		},
-		opts = function(_)
-			local actions = require("telescope.actions")
-
-			return {
-				defaults = {
-					sorting_strategy = "ascending",
+		opts = {
+			defaults = {
+				sorting_strategy = "ascending",
+			},
+			extensions = {
+				file_browser = {
+					hijack_netrw = true,
 				},
-				pickers = {
-					buffers = {
-						previewer = false,
-						theme = "ivy",
-						layout_config = {
-							height = 0.4,
-						},
-						mappings = {
-							i = {
-								["<c-d>"] = actions.delete_buffer + actions.move_to_top,
-							},
-						},
-					},
-				},
-				extensions = {
-					fzf = {
-						fuzzy = true, -- false will only do exact matching
-						override_generic_sorter = true, -- override the generic sorter
-						override_file_sorter = true, -- override the file sorter
-						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-					},
-					file_browser = {
-						hijack_netrw = true,
-					},
-				},
-			}
-		end,
-		config = function(_, opts)
-			local telescope = require("telescope")
-
-			telescope.setup(opts)
-			telescope.load_extension("fzf")
-			telescope.load_extension("file_browser")
-		end,
-	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+			},
+		},
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	},
+	{
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{
+				"<leader>ff",
+				function()
+					require("fzf-lua").files({
+						cwd = require("utils").get_embed_arg_path(),
+						winopts = {
+							hidden = "hidden",
+						},
+					})
+				end,
+				desc = "Find files",
+			},
+			{
+				"<leader>fg",
+				function()
+					require("fzf-lua").live_grep({
+						cwd = require("utils").get_embed_arg_path(),
+					})
+				end,
+				desc = "live grep",
+			},
+			{
+				"<leader>fb",
+				function()
+					require("fzf-lua").buffers({
+						previewer = false,
+						winopts = {
+							row = 1,
+							col = 0,
+							width = 1,
+							height = 0.4,
+							border = "none",
+						},
+					})
+				end,
+				desc = "buffers",
+			},
+		},
 	},
 	{
 		"MunifTanjim/nui.nvim",
