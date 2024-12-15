@@ -1,0 +1,71 @@
+* {
+  border: none;
+  border-radius: 20px;
+  font-family: "JetBrainsMono Nerd Font,JetBrainsMono NF";
+  font-size: 15px;
+  text-shadow: none;
+  transition-duration: 0s;
+}
+
+window#waybar {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.modules-left {
+  margin: 6px 0 0 6px;
+  background: rgba(56, 60, 74, 9);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.modules-center {
+  background: rgba(56, 60, 74, 7);
+  padding: 0 10px 0 10px;
+  margin: 6px 0 0 0;
+}
+
+.modules-right {
+  background: rgba(56, 60, 74, 8);
+  margin: 6px 6px 0 0;
+  padding: 0 10px 0 10px;
+}
+
+#workspaces {
+  background: rgba(56, 60, 74, 9);
+  margin-left: 6px;
+}
+
+#workspaces button {
+  color: rgb(124, 129, 140);
+  background: transparent;
+  padding: 5px;
+}
+
+#workspaces button.active {
+  color: rgba(194, 195, 196, 1);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+#workspaces button:hover {
+  font-size: 16px;
+  color: #383c4a;
+  background: rgb(124, 129, 140);
+}
+
+#workspaces button.focused {
+  color: white;
+}
+
+/* #workspaces, */
+#window,
+#tray,
+#cpu,
+#network,
+#language,
+#memory,
+#custom-vpn,
+#custom-logo,
+#clock {
+  padding: 0 10px;
+}
