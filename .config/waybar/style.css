@@ -4,7 +4,6 @@
   font-family: "JetBrainsMono Nerd Font,JetBrainsMono NF";
   font-size: 15px;
   text-shadow: none;
-  transition-duration: 0s;
 }
 
 window#waybar {
@@ -12,26 +11,24 @@ window#waybar {
 }
 
 .modules-left {
-  margin: 6px 0 0 6px;
-  background: rgba(56, 60, 74, 9);
-  padding-left: 10px;
-  padding-right: 10px;
+  color: rgb(249, 246, 238);
+  background: rgba(10, 10, 10, 0.7);
+  padding: 0 10px 0 10px;
 }
 
 .modules-center {
-  background: rgba(56, 60, 74, 7);
+  color: rgb(249, 246, 238);
+  background: rgba(10, 10, 10, 0.7);
   padding: 0 10px 0 10px;
-  margin: 6px 0 0 0;
 }
 
 .modules-right {
-  background: rgba(56, 60, 74, 8);
-  margin: 6px 6px 0 0;
+  color: rgb(249, 246, 238);
+  background: rgba(10, 10, 10, 0.7);
   padding: 0 10px 0 10px;
 }
 
 #workspaces {
-  background: rgba(56, 60, 74, 9);
   margin-left: 6px;
 }
 
@@ -47,14 +44,15 @@ window#waybar {
   font-size: 16px;
 }
 
-#workspaces button:hover {
-  font-size: 16px;
-  color: #383c4a;
-  background: rgb(124, 129, 140);
-}
-
 #workspaces button.focused {
   color: white;
+}
+
+#workspaces button:hover {
+  background-color: rgba(70, 70, 70, 1);
+  color: white;
+  box-shadow: none;
+  border: none;
 }
 
 /* #workspaces, */
@@ -66,6 +64,7 @@ window#waybar {
 #memory,
 #custom-vpn,
 #custom-logo,
-#clock {
-  padding: 0 10px;
+#clock,
+#wlr-taskbar {
+  /* padding: 0 10px; */
 }
