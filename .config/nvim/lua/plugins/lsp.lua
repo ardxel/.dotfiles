@@ -1,6 +1,7 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		after = "williamboman/mason-lspconfig.nvim",
 		event = "LazyFile",
 		opts = function()
 			local icons = require("config.icons")
@@ -82,6 +83,7 @@ return {
 				"jsonls",
 				"cssls",
 				"html",
+				"tailwindcss",
 			},
 			automatic_installation = true,
 		},
@@ -118,6 +120,7 @@ return {
 					sh = { "shellcheck" },
 					zsh = { "shellcheck" },
 					bash = { "shellcheck" },
+					python = { "flake8" },
 				},
 				formatters = {
 					lua = { "stylua" },
@@ -134,6 +137,7 @@ return {
 					jsonc = { "prettierd" },
 					docker = { "prettierd" },
 					markdown = { "prettierd" },
+					python = { "black" },
 				},
 			},
 		},

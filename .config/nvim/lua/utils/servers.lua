@@ -4,7 +4,6 @@ M.servers = {
 	cssls = {},
 	dockerls = {},
 	marksman = {},
-	-- "emmet_ls",
 	tailwindcss = {
 
 		flags = { debounce_text_changes = 300 },
@@ -49,7 +48,9 @@ M.servers = {
 		},
 	},
 	bashls = {
-		filetypes = { "sh", "aliasrc", "zsh" },
+		settings = {
+			filetypes = { "sh", "zsh" },
+		},
 	},
 	jsonls = {
 		filetypes = { "json", "jsonc" },
@@ -92,6 +93,7 @@ M.servers = {
 	html = {
 		filetypes = { "html", "gotmpl", "tmpl" },
 	},
+	pyright = {},
 }
 
 return M

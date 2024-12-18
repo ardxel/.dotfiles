@@ -36,7 +36,7 @@ M.handlers = {
 		underline = false,
 		virtual_text = {
 			spacing = 4,
-			source = "if_many",
+			source = "always",
 			prefix = function(diagnostic)
 				local icons = require("config.icons").diagnostics
 				return vim.tbl_values(icons)[diagnostic.severity] or icons.Hint
