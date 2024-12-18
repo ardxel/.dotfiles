@@ -6,4 +6,5 @@ TODO.*
 Brewfile
 profile.log
 assets
-
+/install
+/packages
