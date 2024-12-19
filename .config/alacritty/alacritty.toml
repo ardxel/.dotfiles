@@ -2,28 +2,29 @@
 live_config_reload = true
 
 [window]
-startup_mode = "FullScreen"
-blur = true
-opacity = 0.8
 option_as_alt = "Both"
 
 [font]
 size = 14.00
 
 [font.normal]
-family = "FiraCode Nerd Font Mono"
+# family = "Space Mono Nerd Font"
+family = "Terminess Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "Fira Code"
-style = "Bold"
+# family = "Space Mono Nerd Font"
+family = "Terminess Nerd Font"
+style = "SemiBold"
 
 [font.italic]
-family = "Fira Code"
+# family = "Space Mono Nerd Font"
+family = "Terminess Nerd Font"
 style = "Regular"
 
 [font.bold_italic]
-family = "Fira Code"
+# family = "Space Mono Nerd Font"
+family = "Terminess Nerd Font"
 style = "SemiBold"
 
 [cursor.style]
@@ -35,13 +36,6 @@ shape = "Beam"
 
 [keyboard]
 bindings = [
-	{key = "Space", mods = "Control|shift", action = "ToggleViMode"},
 	{ key = "}", mods = "Control|shift", action = "increasefontsize" },
 	{ key = "{", mods = "Control|Shift", action = "DecreaseFontSize" },
-	{ key = "H", mods = "Control|Shift", action = "WordLeft" }, # Ctrl-A
-	{ key = "L", mods = "Control|Shift", action = "WordRight" }, # Ctrl-E
-# { key: Left, mods: Alt, chars: "\x1bb" },
-# { key: Right, mods: Alt, chars: "\x1bf" },
-# { key: K, mods: Shift|Alt, action: ScrollPageUp },
-# { key: J, mods: Shift|Alt, action: ScrollPageDown },
 ]
