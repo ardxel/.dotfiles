@@ -10,12 +10,12 @@ return {
 				inlay_hints = { enabled = false },
 				diagnostics = {
 					underline = false,
-					update_in_insert = false,
-					severity_sort = true,
 					virtual_text = {
 						spacing = 4,
-						source = "if_many",
-						prefix = "",
+						source = true,
+						prefix = function(diagnostic)
+							return vim.tbl_values(icons.diagnostics)[diagnostic.severity] or icons.Hint
+						end,
 					},
 					signs = {
 						text = {
@@ -104,43 +104,6 @@ return {
 			},
 		},
 		config = true,
-	},
-	{
-		"frostplexx/mason-bridge.nvim",
-		opts = {
-			overrides = {
-				linters = {
-					javascript = { "eslint_d" },
-					javascriptreact = { "eslint_d" },
-					typescript = { "eslint_d" },
-					typescriptreact = { "eslint_d" },
-					markdown = { "markdownlint" },
-					json = { "jsonlint" },
-					jsonc = { "jsonlint" },
-					sh = { "shellcheck" },
-					zsh = { "shellcheck" },
-					bash = { "shellcheck" },
-					python = { "flake8" },
-				},
-				formatters = {
-					lua = { "stylua" },
-					typescript = { "prettierd" },
-					typescriptreact = { "prettierd" },
-					javascript = { "prettierd" },
-					javascriptreact = { "prettierd" },
-					html = { "prettierd" },
-					css = { "prettierd" },
-					scss = { "prettierd" },
-					sh = { "shfmt" },
-					zsh = { "shfmt" },
-					json = { "prettierd" },
-					jsonc = { "prettierd" },
-					docker = { "prettierd" },
-					markdown = { "prettierd" },
-					python = { "black" },
-				},
-			},
-		},
 	},
 	{
 		"dmmulroy/ts-error-translator.nvim",

@@ -1,10 +1,24 @@
 return {
 	"mfussenegger/nvim-lint",
 	event = "LazyFile",
-	config = function()
+	opts = {
+		linters_by_ft = {
+			javascript = { "eslint_d" },
+			javascriptreact = { "eslint_d" },
+			typescript = { "eslint_d" },
+			typescriptreact = { "eslint_d" },
+			markdown = { "markdownlint" },
+			json = { "jsonlint" },
+			jsonc = { "jsonlint" },
+			sh = { "shellcheck" },
+			zsh = { "shellcheck" },
+			bash = { "shellcheck" },
+			python = { "flake8" },
+		},
+	},
+	config = function(_, opts)
 		local lint = require("lint")
-		local mason_bridge = require("mason-bridge")
-		lint.linters_by_ft = mason_bridge.get_linters()
+		lint.linters_by_ft = opts.linters_by_ft
 
 		local try_lint = function()
 			local linters = lint._resolve_linter_by_ft(vim.bo.filetype)
@@ -15,23 +29,25 @@ return {
 		end
 
 		local utils = require("utils")
-		vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
-			group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+		vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
 			callback = utils.debounce(100, try_lint),
 		})
 
-		-- https://github.com/frostplexx/mason-bridge.nvim?tab=readme-ov-file#dynamically-load-linters-and-formatters
-		vim.api.nvim_create_autocmd("BufWritePost", {
-			callback = function()
-				local linters = mason_bridge.get_linters()
-				if #linters == 0 then
-					return
-				end
-				local names = linters[vim.bo.filetype] or {}
-				names = vim.list_extend({}, names)
-				vim.list_extend(names, linters["*"])
-				lint.try_lint(names)
-			end,
-		})
+		for _, linters in pairs(opts.linters_by_ft) do
+			for _, linter in ipairs(linters) do
+				local ns = lint.get_namespace(linter)
+				vim.diagnostic.config({
+					underline = false,
+					virtual_text = {
+						spacing = 4,
+						source = true,
+						prefix = function(diagnostic)
+							local icons = require("config.icons").diagnostics
+							return vim.tbl_values(icons)[diagnostic.severity] or icons.Hint
+						end,
+					},
+				}, ns)
+			end
+		end
 	end,
 }
