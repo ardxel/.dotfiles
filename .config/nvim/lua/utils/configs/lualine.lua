@@ -1,88 +1,84 @@
 local M = {}
 
 M.colors = {
-	fg_light = "#ebdbb2",
-	fg_dark = "#7c6f64",
-	bg_light = "#d5c4a1",
-	bg_dark = "black",
-}
-
-M.themes = {
-	dark = { "vague" },
-	ligth = { "gruvbox" },
+	primary = "#1a3a34",
+	secondary = "#0d1b2a",
+	accent = "#ff8c42",
+	background = "#0b1d2c",
+	surface = "#a6a6a6",
+	text_primary = "#e5e5e5",
+	text_secondary = "#7abf91",
+	success = "#00ffab",
+	warning = "#ffc857",
+	error = "#ff4e50",
+	info = "#5bc0eb",
+	transparent = nil,
 }
 
 M._dark_theme = {
 	normal = {
-		a = { bg = M.colors.bg_dark, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
-		z = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
+		a = { bg = M.colors.background, fg = M.colors.surface, gui = "bold" },
+		b = { bg = M.colors.background, fg = M.colors.text_primary },
+		c = { bg = M.colors.background },
+		x = { bg = M.colors.background },
+		y = { bg = M.colors.background },
+		z = { bg = M.colors.background },
 	},
 	insert = {
-		a = { bg = M.colors.bg_dark, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
+		a = { bg = M.colors.background, fg = M.colors.surface, gui = "bold" },
+		b = { bg = M.colors.background, fg = M.colors.text_primary },
+		c = { bg = M.colors.background },
+		x = { bg = M.colors.background },
+		y = { bg = M.colors.background },
+		z = { bg = M.colors.background },
 	},
 	visual = {
-		a = { bg = M.colors.bg_dark, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
+		a = { bg = M.colors.background, fg = M.colors.surface, gui = "bold" },
+		b = { bg = M.colors.background, fg = M.colors.text_primary },
+		c = { bg = M.colors.background },
+		x = { bg = M.colors.background },
+		y = { bg = M.colors.background },
+		z = { bg = M.colors.background },
 	},
 	replace = {
-		a = { bg = M.colors.bg_dark, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
+		a = { bg = M.colors.background, fg = M.colors.surface, gui = "bold" },
+		b = { bg = M.colors.background, fg = M.colors.text_primary },
+		c = { bg = M.colors.background },
+		x = { bg = M.colors.background },
+		y = { bg = M.colors.background },
+		z = { bg = M.colors.background },
 	},
 	command = {
-		a = { bg = M.colors.bg_dark, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
+		a = { bg = M.colors.background, fg = M.colors.surface, gui = "bold" },
+		b = { bg = M.colors.background, fg = M.colors.text_primary },
+		c = { bg = M.colors.background },
+		x = { bg = M.colors.background },
+		y = { bg = M.colors.background },
+		z = { bg = M.colors.background },
 	},
 	inactive = {
-		a = { bg = M.colors.bg_dark, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_dark, fg = M.colors.fg_dark },
-	},
-}
-
-M._light_theme = {
-	normal = {
-		a = { bg = M.colors.bg_light, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-		z = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-	},
-	insert = {
-		a = { bg = M.colors.bg_light, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-	},
-	visual = {
-		a = { bg = M.colors.bg_light, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-	},
-	replace = {
-		a = { bg = M.colors.bg_light, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-	},
-	command = {
-		a = { bg = M.colors.bg_light, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-	},
-	inactive = {
-		a = { bg = M.colors.bg_light, fg = M.colors.fg_dark, gui = "bold" },
-		b = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
-		c = { bg = M.colors.bg_light, fg = M.colors.fg_dark },
+		a = { bg = M.colors.background, fg = M.colors.surface, gui = "bold" },
+		b = { bg = M.colors.background, fg = M.colors.text_primary },
+		c = { bg = M.colors.background },
+		x = { bg = M.colors.background },
+		y = { bg = M.colors.background },
+		z = { bg = M.colors.background },
 	},
 }
 
 M.get_config = function()
 	local icons = require("config.icons")
-	local utils = require("utils")
+
+	local branch = {
+		"branch",
+		color = { fg = M.colors.text_primary },
+	}
+
+	local filename = {
+		"filename",
+		path = 4,
+		color = { fg = M.colors.info },
+	}
 
 	local location = {
 		"location",
@@ -91,8 +87,9 @@ M.get_config = function()
 			local col = vim.fn.virtcol(".")
 			local total_lines = vim.fn.line("$")
 
-			return string.format("( %2d:%s:%-2d )", line, col, total_lines)
+			return string.format("%2d:%s:%-2d", line, col, total_lines)
 		end,
+		color = { fg = M.colors.text_primary },
 	}
 
 	--- Visual Multi Mode
@@ -100,13 +97,11 @@ M.get_config = function()
 	local mode = {
 		"mode",
 		fmt = function(mode)
-			return vim.iter(string.gmatch(vim.fn["vm#themes#statusline"](), "%S+")):nth(2) or mode
+			local ok, extra_mode = pcall(function()
+				return vim.iter(string.gmatch(vim.fn["vm#themes#statusline"](), "%S+")):nth(2)
+			end)
+			return ok and extra_mode or mode
 		end,
-	}
-
-	local filetype = {
-		"filetype",
-		icon_only = true,
 	}
 
 	local diff = {
@@ -125,6 +120,11 @@ M.get_config = function()
 			added = icons.git.GitAdd .. " ",
 			modified = icons.git.GitChange .. " ",
 			removed = icons.git.GitDelete .. " ",
+		},
+		diff_color = {
+			added = "LuaLineDiffAddSpace", -- Changes the diff's added color
+			modified = "LuaLineDiffChangeSpace", -- Changes the diff's modified color
+			removed = "LuaLineDiffDeleteSpace", -- Changes the diff's removed color you
 		},
 		colored = true,
 		always_visible = false,
@@ -145,7 +145,13 @@ M.get_config = function()
 		always_visible = false,
 	}
 
-	local theme = utils.is_dark_mode() and M._dark_theme or M._light_theme
+	local filetype = {
+		"filetype",
+		icon_only = true,
+	}
+
+	-- local theme = utils.is_dark_mode() and M._dark_theme or M._light_theme
+	local theme = M._dark_theme
 	return {
 		options = {
 			theme = theme,
@@ -155,29 +161,13 @@ M.get_config = function()
 		},
 		sections = {
 			lualine_a = { mode },
-			lualine_b = { "branch" },
-			lualine_c = {
-				"filename",
-			},
-			lualine_x = {
-				diff,
-				diagnostics,
-				filetype,
-			},
+			lualine_b = { branch },
+			lualine_c = { filename },
+			lualine_x = { diff, diagnostics, filetype },
 			lualine_y = {},
 			lualine_z = { location },
 		},
 	}
-end
-
-M.update_theme = function(config)
-	local utils = require("utils")
-	config = vim.tbl_deep_extend("force", {}, config, {
-		options = {
-			theme = utils.is_dark_mode() and M._dark_theme or M._light_theme,
-		},
-	})
-	return config
 end
 
 return M
