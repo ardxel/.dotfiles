@@ -2,9 +2,7 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
-		config = function()
-			require("utils.configs.cmp").setup()
-		end,
+		config = require("utils.configs.cmp").setup,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
@@ -28,7 +26,10 @@ return {
 		},
 	},
 	{
-		"Exafunction/codeium.nvim",
+		-- fork with toggle feature
+		"Ealiaksandr-trush/codeium.nvim",
+		enabled = false,
+		branch = "toggle",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
@@ -108,19 +109,6 @@ return {
 	{
 		"romainl/vim-cool",
 		event = "LazyFile",
-	},
-	{
-		-- FIX:  fix VM warning about overwriting mappings
-		"mg979/vim-visual-multi",
-		-- lualine is using VM statusline for mode highlights permanently,
-		-- lualine is not lazy loading, and there can be problems.
-		-- event = "LazyFile",
-		lazy = false,
-		priority = 1000,
-		init = function()
-			vim.g.VM_silent_exit = 1
-			vim.g.VM_set_statusline = 0
-		end,
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
