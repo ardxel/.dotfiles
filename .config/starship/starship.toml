@@ -1,98 +1,131 @@
 "$schema" = 'https://starship.rs/config-schema.json'
-
+add_newline = true
 format = """
 $os\
 $username\
 $directory\
 $git_branch\
-$git_metrics\
 $fill\
+$git_metrics\
 $git_status\
-$time\n  \
-[󱞪](fg:color_blue) \
+$time\
+$line_break\
+$character\
 """
 
-palette = "gruvbox_dark"
+palette = "horizon"
 
-[palettes.gruvbox_dark]
-color_fg0 = '#fbf1c7'
-color_bg1 = '#3c3836'
-color_bg3 = '#665c54'
-color_blue = '#7daea3'
-color_aqua = '#89b482'
-color_green = '#a9b665'
-color_orange = '#e78a4e'
-color_purple = '#b16286'
-color_red = '#ea6962'
-color_yellow = '#d8a657'
+[palettes.space]
+primary = "#1a3a34"
+secondary = "#0d1b2a"
+accent = "#ff8c42"
+background = "#2b2b2b"
+surface = "#a6a6a6"
+text_primary = "#e5e5e5"
+text_secondary = "#7abf91"
+success = "#00ffab"
+warning = "#ffc857"
+error = "#ff4e50"
+info = "#5bc0eb"
+
+[palettes.horizon]
+primary = "#0b1d2c"         
+secondary = "#1a3a5a"       
+accent = "#ff4500"          
+background = "#081017"      
+surface = "#23374d"         
+text_primary = "#e0e6ef"    
+text_secondary = "#8fa1b3"  
+success = "#00ffa2"         
+warning = "#ffc857"         
+error = "#ff4e50"           
+info = "#5bc0eb"            
+
+[palettes.stellar]
+primary = "#1a1a28"         
+secondary = "#403d52"       
+accent = "#d4af37"          
+background = "#101014"      
+surface = "#272739"         
+text_primary = "#ffffff"    
+text_secondary = "#a8a8c0"  
+success = "#80c995"         
+warning = "#f4d03f"         
+error = "#e74c3c"           
+info = "#6495ed"            
 
 [os.symbols]
-Arch = " "
-CentOS = " "
-Debian = " "
-Fedora = " "
-FreeBSD = " "
-Linux = " "
-Macos = " "
-NixOS = " "
-OpenBSD = " "
-OracleLinux = " "
-Redox = " "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = " "
+Arch = ""
+CentOS = ""
+Debian = ""
+Fedora = ""
+FreeBSD = ""
+Linux = ""
+Macos = ""
+NixOS = ""
+OpenBSD = ""
+OracleLinux = ""
+Redox = ""
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Windows = ""
 
 [fill]
 symbol = " "
 
+[character]
+success_symbol = "[[ >_](success)](success)"
+error_symbol = "[ ❯](error)"
+vimcmd_symbol = "[ ❮](info)"
+
 [os]
-format = "[ $symbol ]($style)"
-style = "fg:color_fg0"
 disabled = false
+format = "[ $symbol ]($style)"
+style = "accent"
 
 [username]
 disabled = false
 format = "[$user]($style)"
 show_always = true
-style_root = "fg:color_red bold"
-style_user = "fg:color_orange bold"
+style_root = "fg:text_primary bold"
+style_user = "fg:text_primary bold"
 
 [directory]
 format = "[ $path ]($style)"
-style = "fg:color_green"
-truncation_symbol = "…/"
-truncation_length = 3
+style = "info"
+truncation_length = 0
+home_symbol = "🚀"
 
 [git_branch]
 format = "[ $symbol $branch ]($style)"
-style = "fg:color_blue"
+style = "fg:text_secondary"
 symbol = ""
 
 [git_metrics]
 disabled = false
-format = '[+$added](color_green)|[-$deleted](color_red) '
+format = '[+$added](success)|[-$deleted](error) '
 only_nonzero_diffs = true
 
 [git_status]
-ahead = '[⇡ ${count}](color_blue) '
+ahead = '[⇡ ${count}](info) '
 behind = '😰 ${count}'
 conflicted = '🏳'
 deleted = '󰗨 ${count} '
-diverged = '⇕⇡ ${ahead_count}⇣${behind_count} '
+diverged = '⇕⇡${ahead_count}⇣${behind_count} '
 format = "[[($conflicted$modified$untracked$staged$renamed$deleted)](218)($ahead_behind$stashed)]($style)"
-modified = '[~${count}](color_yellow) '
+modified = '[ ${count}](warning) '
 renamed = '👅'
-staged = '[+$count](color_green) '
+staged = '[+$count](success) '
 stashed = " ${count} "
-style = "color_red"
-untracked = "[?${count}](color_red) "
+style = "white"
+untracked = "[ ${count}](error) "
 up_to_date = ''
 
 [time]
 disabled = false
 format = "[ $time 󰥔 ]($style)"
-style = "fg:color_fg0"
+style = "text_primary"
 time_format = "%H:%M"
 use_12hr = false
 
