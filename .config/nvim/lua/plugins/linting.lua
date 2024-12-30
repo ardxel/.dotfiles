@@ -29,7 +29,7 @@ return {
 		end
 
 		local utils = require("utils")
-		vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+		vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
 			callback = utils.debounce(100, try_lint),
 		})
 
