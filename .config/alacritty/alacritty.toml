@@ -1,3 +1,5 @@
+[env]
+WINIT_X11_SCALE_FACTOR = "1.00"
 [general]
 live_config_reload = true
 
@@ -8,23 +10,19 @@ option_as_alt = "Both"
 size = 14.00
 
 [font.normal]
-# family = "Space Mono Nerd Font"
-family = "Terminess Nerd Font"
+family = "Departure Mono Nerd Font"
 style = "Regular"
 
 [font.bold]
-# family = "Space Mono Nerd Font"
-family = "Terminess Nerd Font"
+family = "Departure Mono Nerd Font"
 style = "SemiBold"
 
 [font.italic]
-# family = "Space Mono Nerd Font"
-family = "Terminess Nerd Font"
+family = "Departure Mono Nerd Font"
 style = "Regular"
 
 [font.bold_italic]
-# family = "Space Mono Nerd Font"
-family = "Terminess Nerd Font"
+family = "Departure Mono Nerd Font"
 style = "SemiBold"
 
 [cursor.style]
