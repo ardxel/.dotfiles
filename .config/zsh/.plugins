@@ -14,3 +14,4 @@ autoload -Uz _zinit
 
 zinit load https://github.com/zsh-users/zsh-autosuggestions
 zinit load https://github.com/zsh-users/zsh-syntax-highlighting
+zinit load https://github.com/hlissner/zsh-autopair
