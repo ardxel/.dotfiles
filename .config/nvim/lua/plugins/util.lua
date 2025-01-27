@@ -23,4 +23,13 @@ return {
 			vim.api.nvim_create_user_command("Emoji", smoji.select, { nargs = 0 })
 		end,
 	},
+	{
+		"sindrets/diffview.nvim",
+		opts = {
+			view = {
+				["<tab>"] = false,
+				{ "x", "gf", false },
+			},
+		},
+	},
 }
