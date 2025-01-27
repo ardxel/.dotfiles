@@ -1,6 +1,7 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
+		enabled = false,
 		event = "InsertEnter",
 		config = require("utils.configs.cmp").setup,
 		dependencies = {
@@ -15,6 +16,46 @@ return {
 			},
 			"onsails/lspkind.nvim",
 		},
+	},
+	{
+		"saghen/blink.cmp",
+		-- optional: provides snippets for the snippet source
+		dependencies = "rafamadriz/friendly-snippets",
+		-- use a release tag to download pre-built binaries
+		version = "*",
+		event = "InsertEnter",
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = require("utils.configs.blink"),
+		config = function(_, opts)
+			for _, provider in pairs(opts.sources.providers or {}) do
+				---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
+				if provider.kind then
+					local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+					local kind_idx = #CompletionItemKind + 1
+
+					CompletionItemKind[kind_idx] = provider.kind
+					---@diagnostic disable-next-line: no-unknown
+					CompletionItemKind[provider.kind] = kind_idx
+
+					---@type fun(ctx: blink.cmp.Context, items: blink.cmp.CompletionItem[]): blink.cmp.CompletionItem[]
+					local transform_items = provider.transform_items
+					---@param ctx blink.cmp.Context
+					---@param items blink.cmp.CompletionItem[]
+					provider.transform_items = function(ctx, items)
+						items = transform_items and transform_items(ctx, items) or items
+						for _, item in ipairs(items) do
+							item.kind = kind_idx or item.kind
+						end
+						return items
+					end
+
+					-- Unset custom prop to pass blink.cmp validation
+					provider.kind = nil
+				end
+			end
+			require("blink.cmp").setup(opts)
+		end,
 	},
 	{
 		"folke/lazydev.nvim",

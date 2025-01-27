@@ -11,15 +11,16 @@ M.setup = function(opts)
 	local servers = require("utils.servers").servers
 	servers = vim.deepcopy(servers)
 	local lspconfig = require("lspconfig")
-	local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+	local blink_cmp = require("blink.cmp")
+
 	local capabilities = vim.tbl_deep_extend(
 		"force",
 		{},
 		vim.lsp.protocol.make_client_capabilities(),
-		has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+		blink_cmp.get_lsp_capabilities(),
 		opts.capabilities or {}
 	)
-
+	vim.diagnostic.config(opts.diagnostics)
 	require("neoconf").setup()
 
 	for lsp_name, lsp_opts in pairs(servers) do
