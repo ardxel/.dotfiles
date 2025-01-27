@@ -1,0 +1,7 @@
+appimagelauncher
+google-chrome
+ml4w-hyprland
+nautilus-open-any-terminal
+python-screeninfo
+rar
+ventoy-bin
