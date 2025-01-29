@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 GOPATH="$(go env get GOPATH)"
 
 if command -v gls &>/dev/null; then

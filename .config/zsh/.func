@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 clear_dev_envs() {
 	pkill -f prettierd
 	pkill -f prettier
