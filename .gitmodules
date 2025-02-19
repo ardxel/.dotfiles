@@ -1,0 +1,3 @@
+[submodule ".local/src/localbook"]
+	path = .local/src/localbook
+	url = https://github.com/ardxel/localbook
