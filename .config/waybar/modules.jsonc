@@ -1,0 +1,117 @@
+{
+  "custom/logo": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "~/.config/hypr/scripts/menu-launcher.sh",
+  },
+  "hyprland/workspaces": {
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
+    "on-click": "activate",
+    "all-outputs": true,
+    "active-only": false,
+    "format": "{}",
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+    },
+  },
+  "hyprland/window": {
+    "max-length": 60,
+    "rewrite": {
+      "(.*) - Brave": "$1",
+      "(.*) - Chromium": "$1",
+      "(.*) - Brave Search": "$1",
+      "(.*) - Outlook": "$1",
+      "(.*) Microsoft Teams": "$1",
+    },
+    "separate-outputs": true,
+  },
+  "custom/updates": {
+    "format": " <span font='22px'></span>   {}",
+    // "toolkip-format": "{tooltip}",
+    "return-type": "json",
+    "interval": 3600,
+    "exec": "./scripts/updates.sh",
+  },
+  "custom/vpn": {
+    "format": "󰌿",
+    "exec": "ip add show | grep tun",
+    "interval": 2,
+  },
+  "hyprland/language": {
+    "format": "<span font='22px' rise='-1500'> </span> {}",
+    "format-en": "EN",
+    "format-ru": "RU",
+  },
+  "custom/system-icon": {
+    "format": "<span rise='3000'></span>",
+    "tooltip": false,
+  },
+  "cpu": {
+    "format": "<span font='20px'></span>   {usage}%",
+    "on-click": "kitty --hold sh -c \"htop\"",
+    "interval": 30,
+  },
+  "memory": {
+    "format": "<span font='20px'></span>    {used:0.1f}G",
+    "on-click": "kitty --hold sh -c \"htop\"",
+    "interval": 30,
+  },
+  "group/system": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "not-memory",
+      "transition-left-to-right": false,
+    },
+    "modules": ["custom/system-icon", "network", "cpu", "memory"],
+  },
+  "clock": {
+    "format": "{:%H:%M %a}",
+    "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+  },
+  "wireplumber": {
+    "format": "<span font='20px'>{icon}</span>    {volume}%",
+    "format-muted": " ",
+    "format-icons": ["", "", ""],
+    "on-click": "helvum",
+  },
+  "custom/exit": {
+    "format": "",
+    "on-click": "wlogout",
+    "tooltip": false,
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "<span font='22px' rise='-2500'></span>{essid}   ({signalStrength}%)",
+    "format-ethernet": " <span font='22px' rise='-2500'></span>   {ifname}",
+    "format-disconnected": "Disconnected ⚠",
+    "tooltip-format": " {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+  },
+}

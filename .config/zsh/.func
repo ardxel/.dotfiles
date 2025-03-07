@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 clear_dev_envs() {
 	pkill -f prettierd
 	pkill -f prettier
@@ -8,4 +10,25 @@ clear_dev_envs() {
 	pkill -f nvim
 	watchman watch-del-all >/dev/null
 	echo "All dev envs killed"
+}
+
+tre() {
+	tree -a -L "$1" --gitignore -I '.git'
+}
+
+walm() {
+	local MODE_FILE="$HOME/.cache/wal/mode"
+	local MODE="dark"
+
+	for arg in "$@"; do
+		if [[ "$arg" =~ ^-l$ ]]; then
+			MODE="light"
+			break
+		fi
+	done
+
+	wal --cols16 "$@" &&
+		echo "$MODE" >"$MODE_FILE" &&
+		~/.config/wal/scripts/pywal_to_starship.sh &&
+		~/.config/wal/scripts/wallpaper.sh
 }
