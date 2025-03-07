@@ -5,6 +5,10 @@ $os\
 $username\
 $directory\
 $git_branch\
+$nodejs\
+$lua\
+$golang\
+$python\
 $fill\
 $git_metrics\
 $git_status\
@@ -13,7 +17,93 @@ $line_break\
 $character\
 """
 
-palette = "horizon"
+palette = "pywal"
+
+[os.symbols]
+Arch = ""
+CentOS = ""
+Debian = ""
+Fedora = ""
+FreeBSD = ""
+Linux = ""
+Macos = ""
+NixOS = ""
+OpenBSD = ""
+OracleLinux = ""
+Redox = ""
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Windows = ""
+
+[nodejs]
+format = '\[[$symbol($version)]($style)\]'
+
+[lua]
+format = '\[[$symbol($version)]($style)\]'
+
+[golang]
+format = '\[[$symbol($version)]($style)\]'
+
+[python]
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[[ >_](success)](success)"
+error_symbol = "[ ❯](error)"
+vimcmd_symbol = "[ ❮](info)"
+
+[os]
+disabled = false
+format = "[ $symbol ]($style)"
+style = "accent"
+
+[username]
+disabled = false
+format = "[$user]($style)"
+show_always = true
+style_root = "fg:text_primary bold"
+style_user = "fg:text_primary bold"
+
+[directory]
+format = "[ $path ]($style)"
+style = "info"
+truncation_length = 2
+
+[git_branch]
+format = "[ $symbol $branch ]($style)"
+style = "fg:text_secondary"
+symbol = ""
+
+[git_metrics]
+disabled = false
+format = '[+$added](success)|[-$deleted](error) '
+only_nonzero_diffs = true
+
+[git_status]
+ahead = '[⇡ ${count}](info) '
+behind = '😰 ${count}'
+conflicted = '🏳'
+deleted = '󰗨 ${count} '
+diverged = '⇕⇡${ahead_count}⇣${behind_count} '
+format = "[[($conflicted$modified$untracked$staged$renamed$deleted)](218)($ahead_behind$stashed)]($style)"
+modified = '[ ${count}](warning) '
+renamed = '👅'
+staged = '[+$count](success) '
+stashed = " ${count} "
+style = "white"
+untracked = "[ ${count}](error) "
+up_to_date = ''
+
+[time]
+disabled = false
+format = "[ $time 󰥔 ]($style)"
+style = "text_primary"
+time_format = "%H:%M"
+use_12hr = false
 
 [palettes.space]
 primary = "#1a3a34"
@@ -54,78 +144,16 @@ warning = "#f4d03f"
 error = "#e74c3c"           
 info = "#6495ed"            
 
-[os.symbols]
-Arch = ""
-CentOS = ""
-Debian = ""
-Fedora = ""
-FreeBSD = ""
-Linux = ""
-Macos = ""
-NixOS = ""
-OpenBSD = ""
-OracleLinux = ""
-Redox = ""
-SUSE = ""
-Ubuntu = ""
-Unknown = ""
-Windows = ""
-
-[fill]
-symbol = " "
-
-[character]
-success_symbol = "[[ >_](success)](success)"
-error_symbol = "[ ❯](error)"
-vimcmd_symbol = "[ ❮](info)"
-
-[os]
-disabled = false
-format = "[ $symbol ]($style)"
-style = "accent"
-
-[username]
-disabled = false
-format = "[$user]($style)"
-show_always = true
-style_root = "fg:text_primary bold"
-style_user = "fg:text_primary bold"
-
-[directory]
-format = "[ $path ]($style)"
-style = "info"
-truncation_length = 0
-home_symbol = "🚀"
-
-[git_branch]
-format = "[ $symbol $branch ]($style)"
-style = "fg:text_secondary"
-symbol = ""
-
-[git_metrics]
-disabled = false
-format = '[+$added](success)|[-$deleted](error) '
-only_nonzero_diffs = true
-
-[git_status]
-ahead = '[⇡ ${count}](info) '
-behind = '😰 ${count}'
-conflicted = '🏳'
-deleted = '󰗨 ${count} '
-diverged = '⇕⇡${ahead_count}⇣${behind_count} '
-format = "[[($conflicted$modified$untracked$staged$renamed$deleted)](218)($ahead_behind$stashed)]($style)"
-modified = '[ ${count}](warning) '
-renamed = '👅'
-staged = '[+$count](success) '
-stashed = " ${count} "
-style = "white"
-untracked = "[ ${count}](error) "
-up_to_date = ''
-
-[time]
-disabled = false
-format = "[ $time 󰥔 ]($style)"
-style = "text_primary"
-time_format = "%H:%M"
-use_12hr = false
-
+# DONT WRITE AFTER THIS LINE
+[palettes.pywal]
+primary = "#030514"
+secondary = "#27418f"
+accent = "#754eac"
+background = "#030514"
+surface = "#1976ab"
+text_primary = "#c0c0c4"
+text_secondary = "#7573b5"
+success = "#80c995"
+warning = "#8b8c96"
+error = "#e74c3c" 
+info = "#4f69b0"
