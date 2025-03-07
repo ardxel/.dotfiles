@@ -1,7 +1,14 @@
+adwaita-qt5-git
 appimagelauncher
+aurutils
+checkupdates-with-aur
+flameshot-git
 google-chrome
-ml4w-hyprland
 nautilus-open-any-terminal
+python-pywal16
+python-pywalfox
 python-screeninfo
 rar
 ventoy-bin
+wlogout
+yay
