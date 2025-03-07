@@ -2,8 +2,8 @@ local M = {}
 
 M.setup = function()
 	local cmp = require("cmp")
-	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+	-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+	-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 	cmp.setup({
 		completion = {
@@ -24,7 +24,6 @@ M.setup = function()
 				select = true,
 				behavior = cmp.ConfirmBehavior.Replace,
 			}),
-			-- ["<Esc>"] = cmp.mapping.close(),
 			["<Esc>"] = function(fallback)
 				cmp.abort()
 				fallback()
@@ -45,7 +44,7 @@ M.setup = function()
 			fields = { "abbr", "menu", "kind" },
 			format = function(entry, item)
 				local icons = require("config.icons").kinds
-				item.kind = string.format("%s %s", icons[item.kind], item.kind)
+				item.kind = string.format("%s %s", icons[item.kind] or "", item.kind)
 
 				item.menu = ({
 					nvim_lsp = "[LSP]",

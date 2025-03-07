@@ -1,18 +1,9 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufWritePre" },
+	-- event = { "BufWritePre" },
+	lazy = false,
 	dependencies = { "mason.nvim" },
 	cmd = "ConformInfo",
-	keys = {
-		{
-			"<leader>f",
-			function()
-				require("conform").format({ async = true })
-			end,
-			mode = "",
-			desc = "Format buffer",
-		},
-	},
 	init = function()
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 	end,
@@ -25,7 +16,10 @@ return {
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 				return
 			end
-			return { timeout_ms = 1000, lsp_format = "fallback" }
+			return {
+				timeout_ms = 1000,
+				lsp_format = "fallback",
+			}
 		end,
 		formatters_by_ft = {
 			lua = { "stylua" },
@@ -57,7 +51,10 @@ return {
 			else
 				vim.g.disable_autoformat = true
 			end
-		end, { desc = "Disable autoformat-on-save", bang = true })
+		end, {
+			desc = "Disable autoformat-on-save",
+			bang = true,
+		})
 
 		vim.api.nvim_create_user_command("FormatEnable", function()
 			vim.b.disable_autoformat = false

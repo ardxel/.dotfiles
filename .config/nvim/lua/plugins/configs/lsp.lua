@@ -11,13 +11,14 @@ M.setup = function(opts)
 	local servers = require("utils.servers").servers
 	servers = vim.deepcopy(servers)
 	local lspconfig = require("lspconfig")
-	local blink_cmp = require("blink.cmp")
+	local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+	-- local blink_cmp = require("blink.cmp")
 
 	local capabilities = vim.tbl_deep_extend(
 		"force",
 		{},
 		vim.lsp.protocol.make_client_capabilities(),
-		blink_cmp.get_lsp_capabilities(),
+		has_cmp and cmp_nvim_lsp.default_capabilities() or {},
 		opts.capabilities or {}
 	)
 	vim.diagnostic.config(opts.diagnostics)
@@ -26,7 +27,14 @@ M.setup = function(opts)
 	for lsp_name, lsp_opts in pairs(servers) do
 		lspconfig[lsp_name].setup(vim.tbl_deep_extend("force", lsp_opts, {
 			on_attach = lsp_utils.on_attach,
-			capabilities = capabilities,
+			capabilities = lsp_name == "python" and vim.tbl_deep_extend("force", vim.deepcopy(capabilities), {
+				textDocument = {
+					hover = {
+						contentFormat = { "plaintext" },
+						dynamicRegistration = true,
+					},
+				},
+			}) or capabilities,
 			handlers = lsp_utils.handlers,
 		}))
 	end

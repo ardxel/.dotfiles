@@ -10,6 +10,7 @@ return {
 				function()
 					local file_browser = require("telescope").extensions.file_browser
 					file_browser.file_browser({
+						hidden = true,
 						grouped = true,
 						cwd = require("utils").get_embed_arg_path(),
 					})
@@ -21,6 +22,7 @@ return {
 				function()
 					local file_browser = require("telescope").extensions.file_browser
 					file_browser.file_browser({
+						hidden = true,
 						grouped = true,
 						path = "%:p:h",
 						select_buffer = true,
@@ -32,27 +34,31 @@ return {
 			defaults = {
 				sorting_strategy = "ascending",
 			},
-			extensions = {
-				file_browser = {
-					hijack_netrw = true,
-				},
-			},
+			-- extensions = {
+			-- 	file_browser = {
+			-- 		hijack_netrw = true,
+			-- 	},
+			-- },
 		},
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+		},
 	},
 	{
 		"ibhagwan/fzf-lua",
-		-- optional for icon support
+		lazy = false,
+		cmd = { "FzfLua" },
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		keys = {
 			{
 				"<leader>ff",
 				function()
 					require("fzf-lua").files({
-						cwd = require("utils").get_embed_arg_path(),
+						-- cwd = require("utils").get_embed_arg_path(),
 						winopts = {
 							hidden = "hidden",
 						},
@@ -61,10 +67,22 @@ return {
 				desc = "Find files",
 			},
 			{
+				"<leader>fF",
+				function()
+					require("fzf-lua").files({
+						-- cwd = require("utils").get_embed_arg_path(),
+						winopts = {
+							hidden = "hidden",
+						},
+					})
+				end,
+				desc = "Find files(2)",
+			},
+			{
 				"<leader>fg",
 				function()
 					require("fzf-lua").live_grep({
-						cwd = require("utils").get_embed_arg_path(),
+						-- cwd = require("utils").get_embed_arg_path(),
 					})
 				end,
 				desc = "live grep",
@@ -86,6 +104,7 @@ return {
 				desc = "buffers",
 			},
 		},
+		opts = {},
 	},
 	{
 		"MunifTanjim/nui.nvim",

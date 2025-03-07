@@ -36,7 +36,7 @@ return {
 			}
 		end,
 		config = function(_, opts)
-			require("utils.configs.lsp").setup(opts)
+			require("plugins.configs.lsp").setup(opts)
 		end,
 		dependencies = {
 			{
@@ -44,7 +44,6 @@ return {
 				"williamboman/mason.nvim",
 			},
 			"williamboman/mason-lspconfig.nvim",
-			"windwp/nvim-autopairs",
 		},
 	},
 

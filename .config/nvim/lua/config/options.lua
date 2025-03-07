@@ -4,7 +4,7 @@ vim.o.virtualedit = ""
 vim.o.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
-opt.cmdheight = 1
+opt.cmdheight = 0
 opt.smarttab = true
 opt.autoindent = true
 opt.completeopt = "menuone,noinsert,noselect"
@@ -17,7 +17,7 @@ opt.cursorline = true
 opt.signcolumn = "yes:1"
 
 opt.hidden = true
-opt.scrolloff = 10
+opt.scrolloff = 4
 opt.swapfile = false
 opt.modifiable = true
 opt.termguicolors = true

@@ -1,9 +1,8 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		enabled = false,
 		event = "InsertEnter",
-		config = require("utils.configs.cmp").setup,
+		config = require("plugins.configs.cmp").setup,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
@@ -19,41 +18,19 @@ return {
 	},
 	{
 		"saghen/blink.cmp",
+		enabled = false,
 		-- optional: provides snippets for the snippet source
-		dependencies = "rafamadriz/friendly-snippets",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"xzbdmw/colorful-menu.nvim",
+		},
 		-- use a release tag to download pre-built binaries
 		version = "*",
 		event = "InsertEnter",
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
-		opts = require("utils.configs.blink"),
+		opts = require("plugins.configs.blink"),
 		config = function(_, opts)
-			for _, provider in pairs(opts.sources.providers or {}) do
-				---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
-				if provider.kind then
-					local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-					local kind_idx = #CompletionItemKind + 1
-
-					CompletionItemKind[kind_idx] = provider.kind
-					---@diagnostic disable-next-line: no-unknown
-					CompletionItemKind[provider.kind] = kind_idx
-
-					---@type fun(ctx: blink.cmp.Context, items: blink.cmp.CompletionItem[]): blink.cmp.CompletionItem[]
-					local transform_items = provider.transform_items
-					---@param ctx blink.cmp.Context
-					---@param items blink.cmp.CompletionItem[]
-					provider.transform_items = function(ctx, items)
-						items = transform_items and transform_items(ctx, items) or items
-						for _, item in ipairs(items) do
-							item.kind = kind_idx or item.kind
-						end
-						return items
-					end
-
-					-- Unset custom prop to pass blink.cmp validation
-					provider.kind = nil
-				end
-			end
 			require("blink.cmp").setup(opts)
 		end,
 	},
@@ -158,9 +135,34 @@ return {
 		},
 	},
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {},
+		"altermo/ultimate-autopair.nvim",
+		event = { "InsertEnter", "CmdlineEnter" },
+		branch = "v0.6", --recommended as each new version will have breaking changes
+		opts = {
+			internal_pairs = {
+				{
+					"{%",
+					"%}",
+					fly = true,
+					dosuround = true,
+					newline = false,
+					space = true,
+					ft = { "jinja", "html" },
+				},
+			},
+		},
+		config = function(_, opts)
+			default_cfg = require("ultimate-autopair.default").conf
+			default_cfg = vim.deepcopy(default_cfg)
+
+			if opts.internal_pairs then
+				for _, pair in ipairs(opts.internal_pairs) do
+					table.insert(default_cfg.internal_pairs, pair)
+				end
+			end
+
+			require("ultimate-autopair").setup(default_cfg)
+		end,
 	},
 	{
 		-- Move any selection in any direction

@@ -21,9 +21,6 @@ map.set("n", "<C-w><down>", "<C-w>-", with_desc("Resize to down"))
 map.set("n", "<leader>sv", ":vsplit<CR>", with_desc("Split vertical"))
 map.set("n", "<leader>sh", ":split<CR>", with_desc("Split horizontal"))
 
--- SELECT ALL
-map.set("n", "<C-s-a>", "gg<S-v>G", { desc = "Select all" })
-
 -- BUFFER MANAGMENT
 map.set("n", "<Tab>", ":bnext<CR>", with_desc("Buffer Next"))
 map.set("n", "<s-Tab>", ":bprev<CR>", with_desc("Buffer Prev"))
@@ -39,6 +36,8 @@ map.set("c", "<C-F>", "<Left>", { noremap = true, desc = "CMD: Move cursor left"
 map.set("c", "<C-B>", "<Right>", { noremap = true, desc = "CMD: Move cursor right" })
 map.set("c", "<Esc>b", "<S-Left>", { noremap = true, desc = "CMD: Move cursor on word left" })
 map.set("c", "<C-a>", "<S-Right>", { noremap = true, desc = "CMD: Move cursor on word right" })
+
+map.set("t", "<C-SPACE>", "<C-\\><C-n>", { silent = true, desc = "Exit terminal mode" })
 
 -- IF NEOVIDE
 if vim.g.neovide then

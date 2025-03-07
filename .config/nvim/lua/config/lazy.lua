@@ -43,9 +43,9 @@ M.setup = function()
 	events.lazy_file()
 
 	require("config.globals")
-	require("config.autocmds")
 	require("config.keymaps")
 	require("config.options")
+	-- require("config.autocmds")
 	require("lazy").setup("plugins", M.options)
 end
 

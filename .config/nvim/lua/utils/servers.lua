@@ -37,10 +37,10 @@ M.servers = {
 				workspace = {
 					checkThirdParty = false,
 				},
-				diagnostics = {
-					globals = { "vim" },
-					disable = { "incomplete-signature-doc", "trailing-space" },
-				},
+				-- diagnostics = {
+				-- 	globals = { "vim" },
+				-- 	disable = { "incomplete-signature-doc", "trailing-space" },
+				-- },
 				format = {
 					enable = false,
 				},
@@ -90,10 +90,24 @@ M.servers = {
 			},
 		},
 	},
+	ts_ls = {},
 	html = {
 		filetypes = { "html", "gotmpl", "tmpl" },
 	},
-	pyright = {},
+	pyright = {
+		python = {
+			analysis = {
+				autoSearchPaths = true,
+				inlayHints = {
+					enable = true,
+					functionReturnTypes = true,
+					pytestParameters = true,
+					variableTypes = true,
+				},
+			},
+		},
+	},
+	jinja_lsp = {},
 }
 
 return M

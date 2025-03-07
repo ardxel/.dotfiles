@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		enabled = true,
 		build = ":TSUpdate",
 		opts = {
 			context = { enable = true },
@@ -25,7 +26,11 @@ return {
 				"dockerfile",
 				"markdown",
 				"markdown_inline",
+				"git_config",
+				"gitcommit",
+				"git_rebase",
 				"gitignore",
+				"gitattributes",
 			},
 			auto_install = true,
 			highlight = {

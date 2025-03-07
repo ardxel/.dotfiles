@@ -1,37 +1,18 @@
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
+		lazy = false,
+		opts = {
+			pywal = true,
 		},
-		config = function()
-			local utils = require("utils.configs.lualine")
-
-			vim.api.nvim_set_hl(0, "LuaLineDiffAddSpace", {
-				foreground = utils.colors.success,
-				background = utils.colors.background,
-			})
-			vim.api.nvim_set_hl(0, "LuaLineDiffChangeSpace", {
-				foreground = utils.colors.warning,
-				background = utils.colors.background,
-			})
-			vim.api.nvim_set_hl(0, "LuaLineDiffDeleteSpace", {
-				foreground = utils.colors.error,
-				background = utils.colors.background,
-			})
-
-			local lualine_config = utils.get_config()
+		config = function(_, opts)
+			local utils = require("plugins.configs.lualine")
 			local lualine = require("lualine")
-			lualine.setup(lualine_config)
-		end,
-	},
-	{
-		"vimpostor/vim-tpipeline",
-		enabled = false,
-		event = "VeryLazy", -- this line fixing second statusbar
-		init = function()
-			vim.g.tpipeline_restore = 1
-			vim.g.tpipeline_fillcentre = 1 -- inherit lualine highlights
+			lualine.setup(utils.config(opts.pywal))
+
+			vim.api.nvim_create_user_command("LualineRestart", function()
+				lualine.setup(utils.config())
+			end, { desc = "Restart Lualine" })
 		end,
 	},
 	{
