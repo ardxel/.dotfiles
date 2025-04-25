@@ -9,6 +9,7 @@ return {
 			return {
 				inlay_hints = { enabled = false },
 				diagnostics = {
+					severity_sort = true,
 					underline = false,
 					virtual_text = {
 						spacing = 4,
@@ -111,4 +112,7 @@ return {
 		end,
 	},
 	{ "saecki/live-rename.nvim", opts = {} },
+	{
+		"HiPhish/jinja.vim",
+	},
 }

@@ -12,7 +12,6 @@ $python\
 $fill\
 $git_metrics\
 $git_status\
-$time\
 $line_break\
 $character\
 """
@@ -147,13 +146,13 @@ info = "#6495ed"
 # DONT WRITE AFTER THIS LINE
 [palettes.pywal]
 primary = "#030514"
-secondary = "#27418f"
-accent = "#754eac"
+secondary = "#3457BF"
+accent = "#9C69E6"
 background = "#030514"
-surface = "#1976ab"
+surface = "#229EE4"
 text_primary = "#c0c0c4"
-text_secondary = "#7573b5"
+text_secondary = "#9D9AF2"
 success = "#80c995"
-warning = "#8b8c96"
+warning = "#c0c0c4"
 error = "#e74c3c" 
-info = "#4f69b0"
+info = "#6A8CEB"

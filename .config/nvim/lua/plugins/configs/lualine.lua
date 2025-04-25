@@ -21,11 +21,8 @@ M.colors.default = {
 }
 
 M.parse_pywal_colors = function()
-	local json_file = io.open(os.getenv("HOME") .. "/.cache/wal/colors.json", "r")
-	assert(json_file)
-	local json = json_file:read("*a")
-	local pywal = vim.json.decode(json)
-	json_file:close()
+	local utils = require("utils")
+	pywal = utils.read_pywal_colors()
 
 	M.colors.pywal = {
 		primary = pywal.colors.color0,

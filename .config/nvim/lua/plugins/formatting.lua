@@ -36,7 +36,7 @@ return {
 			jsonc = { "prettierd" },
 			docker = { "prettierd" },
 			markdown = { "prettierd" },
-			python = { "isort", "black" },
+			python = { "isort", "autoflake", "black" },
 		},
 		formatters = {
 			injected = { options = { ignore_errors = true } },

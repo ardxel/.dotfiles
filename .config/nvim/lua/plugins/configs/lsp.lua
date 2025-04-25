@@ -13,6 +13,13 @@ M.setup = function(opts)
 	local lspconfig = require("lspconfig")
 	local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 	-- local blink_cmp = require("blink.cmp")
+	vim.filetype.add({
+		extension = {
+			jinja = "jinja",
+			jinja2 = "jinja",
+			j2 = "jinja",
+		},
+	})
 
 	local capabilities = vim.tbl_deep_extend(
 		"force",
@@ -27,14 +34,7 @@ M.setup = function(opts)
 	for lsp_name, lsp_opts in pairs(servers) do
 		lspconfig[lsp_name].setup(vim.tbl_deep_extend("force", lsp_opts, {
 			on_attach = lsp_utils.on_attach,
-			capabilities = lsp_name == "python" and vim.tbl_deep_extend("force", vim.deepcopy(capabilities), {
-				textDocument = {
-					hover = {
-						contentFormat = { "plaintext" },
-						dynamicRegistration = true,
-					},
-				},
-			}) or capabilities,
+			capabilities = vim.deepcopy(capabilities),
 			handlers = lsp_utils.handlers,
 		}))
 	end

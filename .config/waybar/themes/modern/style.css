@@ -24,7 +24,7 @@ window#waybar {
 }
 
 #workspaces button {
-  color: @foreground;
+  color: @color0;
   background: @color10;
   padding: 0px 6px;
   margin: 3px 2px;
@@ -35,7 +35,7 @@ window#waybar {
 
 #workspaces button.active {
   color: @foreground;
-  background: @color9;
+  background: @color0;
   border-radius: 3px 3px 3px 3px;
   min-width: 30px;
   transition: all 0.1s linear;
@@ -44,7 +44,7 @@ window#waybar {
 
 #workspaces button:hover {
   color: @foreground;
-  background: @color9;
+  background: @color0;
   border-radius: 5px 5px 5px 5px;
   opacity: 1;
 }
@@ -80,7 +80,7 @@ window#waybar {
 
 #custom-logo {
   color: @foreground;
-  background: @color5;
+  background: @color8;
   font-size: 20px;
   font-weight: bold;
   border-radius: 5px;
@@ -95,7 +95,7 @@ window#waybar {
 
 #custom-updates {
   color: @foreground;
-  background: @color4;
+  background: @color0;
   font-size: 16px;
   border-radius: 5px 5px 5px 5px;
   padding: 0px 10px 0px 10px;
@@ -107,7 +107,7 @@ window#waybar {
  * -------------------------- */
 
 #custom-vpn {
-  color: @color4;
+  color: @color8;
   font-size: 24px;
   font-weight: bold;
   margin: 0px 15px 0px 0px;
@@ -133,7 +133,7 @@ window#waybar {
  * -------------------------- */
 
 #custom-exit {
-  color: @color4;
+  color: @color8;
   margin: 0px 20px 0px 0px;
   padding: 0px;
   font-size: 20px;
@@ -172,7 +172,7 @@ window#waybar {
  * -------------------------- */
 
 #custom-system-icon {
-  color: @color4;
+  color: @color8;
   padding-left: 10px;
   margin-right: 15px;
   font-size: 22px;

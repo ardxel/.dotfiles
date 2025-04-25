@@ -9,6 +9,7 @@ return {
 				"javascript",
 				"typescript",
 				"html",
+				"jinja",
 				"xml",
 				"css",
 				"scss",
@@ -50,6 +51,5 @@ return {
 	{
 		"windwp/nvim-ts-autotag",
 		event = "LazyFile",
-		opts = {},
 	},
 }

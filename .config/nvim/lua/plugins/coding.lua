@@ -81,6 +81,10 @@ return {
 		},
 	},
 	{
+		"romainl/vim-cool",
+		event = "LazyFile",
+	},
+	{
 		"echasnovski/mini.bufremove",
 		version = false,
 		keys = {
@@ -123,16 +127,18 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		opts = {},
-	},
-	{
-		"romainl/vim-cool",
-		event = "LazyFile",
+		config = function(_, opts)
+			local ft = require("Comment.ft")
+			ft.set("jinja-lsp", { "{#%s#}" })
+			ft.set("jinja", { "{#%s#}" })
+			ft({ "jinja", "html.jinja" }, { "{#%s#}" })
+			require("Comment").setup(opts)
+		end,
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		opts = {
-			enable_autocmd = false,
-		},
+		event = "LazyFile",
+		opts = {},
 	},
 	{
 		"altermo/ultimate-autopair.nvim",
@@ -147,7 +153,7 @@ return {
 					dosuround = true,
 					newline = false,
 					space = true,
-					ft = { "jinja", "html" },
+					ft = { "jinja", "html.jinja" },
 				},
 			},
 		},

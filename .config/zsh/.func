@@ -27,7 +27,7 @@ walm() {
 		fi
 	done
 
-	wal --cols16 "$@" &&
+	wal "$@" &&
 		echo "$MODE" >"$MODE_FILE" &&
 		~/.config/wal/scripts/pywal_to_starship.sh &&
 		~/.config/wal/scripts/wallpaper.sh

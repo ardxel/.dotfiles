@@ -70,8 +70,7 @@
     "modules": ["custom/system-icon", "network", "cpu", "memory"],
   },
   "clock": {
-    "format": "{:%H:%M %a}",
-    "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+    "format": "{:%H:%M  %d\/%m\/%Y }",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",

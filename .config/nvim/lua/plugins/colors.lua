@@ -14,10 +14,11 @@ return {
 	},
 	{
 		"navarasu/onedark.nvim",
+		enabled = false,
 		lazy = false,
 		priority = 1000,
 		opts = {
-			style = "dark", -- dark | darker | cool | deep | warm | warmer | light
+			style = "light", -- dark | darker | cool | deep | warm | warmer | light
 			-- transparent = true,
 			diagnostics = {
 				darker = true, -- darker colors for diagnostic
@@ -26,12 +27,16 @@ return {
 			},
 		},
 		config = function(_, opts)
-			opts.transparent = opts.style == "dark"
+			local utils = require("utils")
+			local pywal_mode = utils.pywal_mode()
+
+			opts.style = pywal_mode == "dark" and "cool" or "warmer"
+			opts.transparent = pywal_mode == "dark"
 			local onedark = require("onedark")
 			onedark.setup(opts)
 			onedark.load()
 
-			if opts.style == "dark" then
+			if pywal_mode == "dark" then
 				vim.api.nvim_set_hl(0, "Illuminate", { bg = "#504945" })
 				vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Illuminate" })
 				vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Illuminate" })
@@ -42,27 +47,24 @@ return {
 		end,
 	},
 	{
-		"ellisonleao/gruvbox.nvim",
-		enabled = false,
+		"rose-pine/neovim",
+		enabled = true,
 		lazy = false,
 		priority = 1000,
-		opts = {},
+		name = "rose-pine",
+		opts = {
+			styles = {
+				italic = false,
+			},
+		},
 		config = function(_, opts)
-			vim.o.background = "light"
-			require("gruvbox").setup(opts)
-			vim.cmd.colorscheme("gruvbox")
-		end,
-	},
-	{
+			local utils = require("utils")
+			local pywal_mode = utils.pywal_mode()
 
-		"jnurmine/Zenburn",
-		enabled = false,
-		lazy = false,
-		priority = 1000,
-		init = function()
-			vim.g.zenburn_transparent = 1
-			vim.g.zenburn_disable_Label_underline = 1
-			vim.cmd("colors zenburn")
+			opts.variant = pywal_mode == "dark" and "main" or "dawn"
+			opts.styles.transparency = pywal_mode == "dark"
+			require("rose-pine").setup(opts)
+			vim.cmd("colorscheme rose-pine")
 		end,
 	},
 }

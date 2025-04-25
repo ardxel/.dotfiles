@@ -5,7 +5,6 @@ M.servers = {
 	dockerls = {},
 	marksman = {},
 	tailwindcss = {
-
 		flags = { debounce_text_changes = 300 },
 		exclude = { "*.ts", ".js" },
 		filetypes = {
@@ -37,10 +36,6 @@ M.servers = {
 				workspace = {
 					checkThirdParty = false,
 				},
-				-- diagnostics = {
-				-- 	globals = { "vim" },
-				-- 	disable = { "incomplete-signature-doc", "trailing-space" },
-				-- },
 				format = {
 					enable = false,
 				},
@@ -92,22 +87,30 @@ M.servers = {
 	},
 	ts_ls = {},
 	html = {
-		filetypes = { "html", "gotmpl", "tmpl" },
+		filetypes = { "html", "gotmpl", "tmpl", "jinja" },
 	},
+	ruff = {},
 	pyright = {
-		python = {
-			analysis = {
-				autoSearchPaths = true,
-				inlayHints = {
-					enable = true,
-					functionReturnTypes = true,
-					pytestParameters = true,
-					variableTypes = true,
+		settings = {
+			pyright = {
+				disableOrganizeImports = true,
+			},
+			python = {
+				analysis = {
+					ignore = { "*" },
 				},
 			},
 		},
 	},
-	jinja_lsp = {},
+	jinja_lsp = {
+		default_config = {
+			name = "jinja-lsp",
+			filetypes = { "jinja", "html", "python", "rs", "css" },
+			root_dir = function()
+				return "."
+			end,
+		},
+	},
 }
 
 return M

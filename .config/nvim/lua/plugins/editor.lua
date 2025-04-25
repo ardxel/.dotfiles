@@ -58,7 +58,7 @@ return {
 				"<leader>ff",
 				function()
 					require("fzf-lua").files({
-						-- cwd = require("utils").get_embed_arg_path(),
+						cwd = require("utils").get_embed_arg_path(),
 						winopts = {
 							hidden = "hidden",
 						},
@@ -70,7 +70,7 @@ return {
 				"<leader>fF",
 				function()
 					require("fzf-lua").files({
-						-- cwd = require("utils").get_embed_arg_path(),
+						cwd = require("utils").get_embed_arg_path(),
 						winopts = {
 							hidden = "hidden",
 						},
@@ -82,7 +82,7 @@ return {
 				"<leader>fg",
 				function()
 					require("fzf-lua").live_grep({
-						-- cwd = require("utils").get_embed_arg_path(),
+						cwd = require("utils").get_embed_arg_path(),
 					})
 				end,
 				desc = "live grep",
@@ -119,7 +119,7 @@ return {
 
 			vim.keymap.set("n", "<leader>ng", function()
 				neogen_docs:mount()
-			end)
+			end, { noremap = true, silent = true, desc = "Open neogen menu" })
 
 			local ts_features = utils.create_popup_menu({
 				{ text = "Organize imports", action = "TSToolsOrganizeImports" },
@@ -130,15 +130,27 @@ return {
 				{ text = "Fix all", action = "TSToolsFixAll" },
 			}, { title = "[Typescript features]" })
 
+			local python_features = utils.create_popup_menu({
+				{ text = "Organize imports", action = "PyrightOrganizeImports" },
+				{ text = "Set python path", action = "PyrightSetPythonPath" },
+			}, { title = "[Pyright features]" })
+
+			local used_servers = {
+				ts_servers = { "tsserver", "typescript-tools", "ts_ls" },
+				python_servers = { "pyright" },
+			}
+
 			vim.keymap.set("n", "<leader>tt", function()
-				local ts_servers = { "tsserver", "typescript-tools" }
 				local active_clients = vim.lsp.get_clients()
 				for _, client in ipairs(active_clients) do
-					if vim.tbl_contains(ts_servers, client) then
+					if vim.tbl_contains(used_servers.ts_servers, client.name) then
 						ts_features:mount()
 					end
+					if vim.tbl_contains(used_servers.python_servers, client.name) then
+						python_features:mount()
+					end
 				end
-			end, { noremap = true, silent = true })
+			end, { noremap = true, silent = true, desc = "Open lsp_client features window" })
 		end,
 	},
 	{
@@ -178,6 +190,13 @@ return {
 		config = function()
 			-- vim.g.mkdp_open_ip = "127.0.0.1"
 			-- vim.g.mkdp_port = 3102
+		end,
+	},
+	{
+		"brenoprata10/nvim-highlight-colors",
+		opts = {},
+		config = function(_, opts)
+			require("nvim-highlight-colors").setup(opts)
 		end,
 	},
 }
