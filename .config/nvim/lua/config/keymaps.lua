@@ -5,6 +5,10 @@ local function with_desc(desc)
 	return extended
 end
 
+-- DIRECTORY NAVIGATION
+map.set("n", "<leader>e", ":Neotree toggle<CR>", with_desc("Neotree toggle"))
+map.set("n", "<leader>m", ":Neotree focus<CR>", with_desc("Neotree focus"))
+
 -- PANEL NAVIGATION
 map.set("n", "<C-h>", "<C-w>h", with_desc("Move left"))
 map.set("n", "<C-j>", "<C-w>j", with_desc("Move down"))
