@@ -1,22 +1,11 @@
 #!/usr/bin/env zsh
 
 if [[ $(uname -s) == "Darwin" ]]; then
-	if command -v gls &>/dev/null; then
-		alias ls="gls --color"
-	else
-		alias ls="ls --color=auto"
-	fi
+	source "$CONFIG/zsh/.aliases.macos"
 fi
 
 if [[ $(uname -s) == "Linux" ]]; then
-	if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
-		alias pbcopy="wl-copy"
-		alias pbpaste="wl-paste"
-	else
-		alias pbcopy='xsel --clipboard --input'
-		alias pbpaste='xsel --clipboard --output'
-		alias pac="pacman"
-	fi
+	source "$CONFIG/zsh/.aliases.linux"
 fi
 
 alias l="ls -al"
@@ -26,7 +15,6 @@ alias ....="cd ../../.."
 alias ~="cd	~"
 alias dot="cd ~/.dotfiles"
 alias dotc="cd ~/.dotfiles/.config"
-alias code="cd ~/Code"
 alias g="git"
 alias vim="nvim"
 alias compose="docker-compose"

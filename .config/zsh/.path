@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+add_to_path() {
+  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+    export PATH="$1:$PATH"
+  fi
+}
+
+add_to_path "$HOME/.local/bin"
+add_to_path "/opt/homebrew/bin"
+add_to_path "/opt/homebrew/sbin"
+add_to_path "$HOME/Library/Python/3.13/bin"
